@@ -65,7 +65,7 @@
 
 5.  Marking everything API that\'s intended for internal use but is externally accessible as `@internal` in its TSDoc, and [prevent TypeScript from emitting their declarations](https://www.typescriptlang.org/v2/en/tsconfig#stripInternal)
 
-6.  Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some native methods return `any`, like `JSON.parse` -  those to a known type as soon as possible, preferably with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards){.external-link}.
+6.  Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some native methods return `any`, like `JSON.parse` -  those to a known type as soon as possible, preferably with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards).
 
 7.  Write tests with Jest.
 
