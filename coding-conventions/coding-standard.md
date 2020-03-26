@@ -31,7 +31,7 @@ The definition of code quality can be categorized across two main dimensions:
 - Highly descriptive and consistent error handling.
 - Appreciation for the difficult, but crucial aspects of REST; self-descriptive messages and Hypertext As The Engine Of Application State (HATEOAS).
 
-##Common Principles (regardless of programming language)
+## Common Principles (regardless of programming language)
 
 ### Avoid mutation by default
 
