@@ -4,31 +4,52 @@ The definition of code quality can be categorized across two main dimensions:
 ## Tangible Things
 
 - Branch coverage must adhere to the targets set for the project.
+
 - Single purpose classes.
+
 - Strict Lint rule enforcement.
+
 - Using static analysis tools.
+
 - Security testing tools.
+
 - Adherence to accepted structure (e.g. Java Maven archetype folder layout for source, tests and resources).
+
 - Internationalisation from the start.
+
 - Clear, but justified, use of recognised design patterns.
+
 - All Pull-Requests:
     - Must be reviewed by at least one other developer on the Enterprise Solid Server team before being merged into the main code base.- 
+
     - Should be kept as short as possible (to allow quick and easy review).
+
     - Should be scoped to a single project (or sub-project).
+
     - Kick-off the CI build on creation, and automatically prevents Merging the PR if it breaks the build.
+
     - Our Continuous Integration pipeline will automatically fail the build on any static analysis violations, or a drop in branch code coverage from 100%.
+
 - We enforce a consistent approach to error handling across our code bases, ensuring that all error conditions have access to rich contextual data (both static context (such as server up-time, server region, administrative preferred languages, etc.) and run-time context (such as request headers, client request WebID, client provided meta-data, etc.).
+
 - We enforce full internationalization across our code bases, including supporting multilingual error messages, log messages, event messages, auditing messages, etc. We implement this support in a fully standardized way by using RDF vocabularies for all messages in the system.
+
 - We provide the same consistent access to multilingual contextual data across all our codebases (i.e. not just for error handling), including logging, auditing, events and notifications. To support the variability of use-cases we again leverage the extensibility and interoperability of RDF as our underlying data model.
 
 ## Intangible Things
 
 - Above all, strive for consistency (hence the enforcement of strict linting above, as that helps significantly).
+
 - Code 'elegance'.
+
 - 'Short' methods.
+
 - All code being clear, precise and concise; meaning comments, class names, variable names, filenames, etc.
+
 - Clear separation of interfaces.
+
 - Highly descriptive and consistent error handling.
+
 - Appreciation for the difficult, but crucial aspects of REST; self-descriptive messages and Hypertext As The Engine Of Application State (HATEOAS).
 
 ## Common Principles (regardless of programming language)
@@ -40,7 +61,6 @@ Try to avoid mutating objects, creating altered copies of data structures rather
 #### Why?
 
 To avoid changes made in one place in your code from cascading down to other places.
-
 
 #### What does that look like (in JavaScript)?
 
@@ -61,7 +81,7 @@ const numbers = [1, 2, 3];
 const doubledNumbers = numbers.map(number => number * 2);
 ```
 
-So we're not modifying the original numbers (nor are we initialising a mutable i, but since its scope is small, that would be fine).
+So we're not modifying the original numbers (nor are we initialising a mutable `i`, but since its scope is small, that would be fine).
 
 ## Style Guides
 
