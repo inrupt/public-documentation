@@ -52,6 +52,27 @@ The definition of code quality can be categorized across two main dimensions:
 
 - Appreciation for the difficult, but crucial aspects of REST; self-descriptive messages and Hypertext As The Engine Of Application State (HATEOAS).
 
+## Branching strategy
+
+For projects that require multiple versions of the software to be maintained in parallel,
+the [Git Flow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+should be followed.
+Otherwise, the simpler [GitHub Flow strategy](https://guides.github.com/introduction/flow/) can be followed.
+
+**Git Flow:**
+
+- Master branch is a representation of the software releases.
+- Development branch is where all features and bugfixes are merged into. This branch is merged into master upon each release.
+- Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the development branch once the feature is completed (via a PR).
+
+**GitHub Flow:**
+
+- Master branch is the main development branch where all features and bugfixes are merged into. At any point in time, it should be deployable.
+- Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the master branch once the feature is completed (via a PR).
+- In order to link the state of the code to software releases, the GitHub releases/tags feature can be used.
+
+In both cases, feature branches must have a descriptive name, such as `fix/broken-homepage` or `feature/fancy-button`.
+
 ## Common Principles (regardless of programming language)
 
 ### Avoid mutation by default
