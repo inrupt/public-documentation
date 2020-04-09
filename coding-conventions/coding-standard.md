@@ -11,6 +11,8 @@ The definition of code quality can be categorized across two main dimensions:
 
 - Using static analysis tools.
 
+- Using an automated dependency checker - specifically Dependabot on all GitHub repositories.
+
 - Security testing tools.
 
 - Adherence to accepted structure (e.g. Java Maven archetype folder layout for source, tests and resources).
@@ -18,6 +20,8 @@ The definition of code quality can be categorized across two main dimensions:
 - Internationalisation from the start.
 
 - Clear, but justified, use of recognised design patterns.
+
+- A clear (and automatically enforcable) commit policy ([ConventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/) has been recommended by Ruben Taelman, but Inrupt has not yet formally adopted anything).
 
 - All Pull-Requests:
     - Must be reviewed by at least one other developer on the Enterprise Solid Server team before being merged into the main code base.- 
