@@ -71,7 +71,9 @@ Otherwise, the simpler [GitHub Flow strategy](https://guides.github.com/introduc
 - Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the master branch once the feature is completed (via a PR).
 - In order to link the state of the code to software releases, the GitHub releases/tags feature can be used.
 
-In both cases, feature branches must have a descriptive name, such as `fix/broken-homepage` or `feature/fancy-button`.
+In both cases, feature branches must have a descriptive name following the format `type/short-description`,
+where types from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) can be used.
+Examples of branch names are: `fix/broken-homepage`, `feat/fancy-button`.
 
 ## Common Principles (regardless of programming language)
 
