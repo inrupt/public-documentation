@@ -54,22 +54,18 @@ The definition of code quality can be categorized across two main dimensions:
 
 ## Branching strategy
 
-For projects that require multiple versions of the software to be maintained in parallel,
-the [Git Flow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-should be followed.
-Otherwise, the simpler [GitHub Flow strategy](https://guides.github.com/introduction/flow/) can be followed.
-
-**Git Flow:**
-
-- Master branch is a representation of the software releases.
-- Development branch is where all features and bugfixes are merged into. This branch is merged into master upon each release.
-- Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the development branch once the feature is completed (via a PR).
-
-**GitHub Flow:**
+By default, the [GitHub Flow strategy](https://guides.github.com/introduction/flow/) should be followed:
 
 - Master branch is the main development branch where all features and bugfixes are merged into. At any point in time, it should be deployable.
 - Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the master branch once the feature is completed (via a PR).
 - In order to link the state of the code to software releases, the GitHub releases/tags feature can be used.
+
+For projects that require the maintenance of multiple versions in parallel,
+the following additions to this strategy can be made:
+
+- Long-lived version branches are created to maintain legacy release. For example, an old version 14.x can be maintained in branch `version/14.x`.
+
+**Note: Version branches should be created for major refactors in a future version, which should be merged into master as soon as possible. For example, if the current stable version is 15.x, and a change is planned which would require a major version change, a 16.x branch would be created, and then deleted once merged with master, which would then track 16.x.**
 
 In both cases, feature branches must have a descriptive name following the format `type/short-description`,
 where types from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) can be used.
