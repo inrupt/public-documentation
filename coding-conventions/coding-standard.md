@@ -71,6 +71,11 @@ In both cases, feature branches must have a descriptive name following the forma
 where types from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) can be used.
 Examples of branch names are: `fix/broken-homepage`, `feat/fancy-button`.
 
+Upon merging any branch into master, it should be ensured that not only the master branch is deployable, but *every commit* is deployable as well.
+This means that every commit should be atomic, which means that each commit adds or fixes a specific thing, instead of containing partially-broken code.
+This also ensures that each commit is revertible at any time.
+Non-master branches can contain non-atomic commits for work in progress, but must then be rebased as soon as possible.
+
 ## Common Principles (regardless of programming language)
 
 ### Avoid mutation by default
