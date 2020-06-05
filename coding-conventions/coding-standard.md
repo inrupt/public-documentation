@@ -63,7 +63,7 @@ By default, the [GitHub Flow strategy](https://guides.github.com/introduction/fl
 For projects that require the maintenance of multiple versions in parallel,
 the following additions to this strategy can be made:
 
-- Long-lived version branches are created to maintain legacy release. For example, an old version 14.x can be maintained in branch `version/14.x`.
+- Version-specific branches can be created when preparing an update to a legacy release. For example, if version 15 is the most recent release, a patch to version 14.x can be prepared in branch `version/14.x`. After release, this branch should be merged back into `master`.
 
 **Note: Version branches should be created for major refactors in a future version, which should be merged into master as soon as possible. For example, if the current stable version is 15.x, and a change is planned which would require a major version change, a 16.x branch would be created, and then deleted once merged with master, which would then track 16.x.**
 
