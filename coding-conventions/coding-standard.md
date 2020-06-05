@@ -58,7 +58,7 @@ By default, the [GitHub Flow strategy](https://guides.github.com/introduction/fl
 
 - Master branch is the main development branch where all features and bugfixes are merged into. At any point in time, it should be deployable.
 - Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the master branch once the feature is completed (via a PR).
-- In order to link the state of the code to software releases, the GitHub releases/tags feature can be used.
+- In order to link the state of the code to software releases, Git tags should be used to track releases, and a CHANGELOG file should document releases. Tags should be in the format `vX.X.X`, such as `v1.13.1`.
 
 For projects that require the maintenance of multiple versions in parallel,
 the following additions to this strategy can be made:
