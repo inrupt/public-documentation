@@ -52,6 +52,30 @@ The definition of code quality can be categorized across two main dimensions:
 
 - Appreciation for the difficult, but crucial aspects of REST; self-descriptive messages and Hypertext As The Engine Of Application State (HATEOAS).
 
+## Branching strategy
+
+By default, the [GitHub Flow strategy](https://guides.github.com/introduction/flow/) should be followed:
+
+- Master branch is the main development branch where all features and bugfixes are merged into. At any point in time, it should be deployable.
+- Feature branches are created for every separate feature (including fixes) that is being developed, which are merged into the master branch once the feature is completed (via a PR).
+- In order to link the state of the code to software releases, Git tags should be used to track releases, and a CHANGELOG file should document releases. Tags should be in the format `vX.X.X`, such as `v1.13.1`.
+
+For projects that require the maintenance of multiple versions in parallel,
+the following additions to this strategy can be made:
+
+- Version-specific branches can be created when preparing an update to a legacy release. For example, if version 15 is the most recent release, a patch to version 14.x can be prepared in branch `version/14.x`. After release, this branch should be merged back into `master`.
+
+**Note: Version branches should be created for major refactors in a future version, which should be merged into master as soon as possible. For example, if the current stable version is 15.x, and a change is planned which would require a major version change, a 16.x branch would be created, and then deleted once merged with master, which would then track 16.x.**
+
+In both cases, feature branches must have a descriptive name following the format `type/short-description`,
+where types from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) can be used.
+Examples of branch names are: `fix/broken-homepage`, `feat/fancy-button`.
+
+Upon merging any branch into master, it should be ensured that not only the master branch is deployable, but *every commit* is deployable as well.
+This means that every commit should be atomic, which means that each commit adds or fixes a specific thing, instead of containing partially-broken code.
+This also ensures that each commit is revertible at any time.
+Non-master branches can contain non-atomic commits for work in progress, but must then be rebased before merging to master.
+
 ## Common Principles (regardless of programming language)
 
 ### Avoid mutation by default
