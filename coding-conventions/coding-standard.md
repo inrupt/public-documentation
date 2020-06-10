@@ -20,7 +20,7 @@ The definition of code quality can be categorized across two main dimensions:
 - Clear, but justified, use of recognised design patterns.
 
 - All Pull-Requests:
-    - Must be reviewed by at least one other developer on the Enterprise Solid Server team before being merged into the main code base.- 
+    - Must be reviewed by at least one other developer before being merged into the main code base.
 
     - Should be kept as short as possible (to allow quick and easy review).
 
