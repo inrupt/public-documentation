@@ -59,7 +59,7 @@
 
     1.  Put source code on the `src` folder.
 
-    2.  Put transpiled code in the `lib` folder. 
+    2.  Put transpiled code in the `lib` folder.  (NO DECISION YET - Vinnie suggests dist instead to avoid confusion with projects using that folder for source code)
     
     3.  Add non-default export to an index file, ensuring that tree-shaking is possible with the `sideEffects` flag in `package.json`.
 
@@ -71,11 +71,13 @@
 
     1.  Put tests and mocks under a separate test folder, not under src.
 
+    2. There are counter-arguments for having tests alongside the source (NO DECISION WHICH YET).
+
 8.  Use ESLint.
 
     1.  On all code, including tests.
 
-    2.  Use the `eslint-config-es` rule set.
+    2.  Use the `eslint-config-es` rule set. (NOT SURE WHAT THIS IS EXACTLY?)
 
 9.  Use Prettier on all code, including tests.
 
@@ -87,13 +89,13 @@
 
 11. Set up commit hooks with Husky to lint, compile, and test.
 
-12. Set up Travis integration to run on Node 12 and LTS.
+12. Set up Travis integration to run on Node 12 and LTS. (NO DECISION ON TRAVIS YET - E.G. WE USE GITHUB ACTIONS FOR THE LIT)
 
 13. One repository is one npm module by default.
 
     1.  If more complex reuse becomes a necessity, consult with others before converting to a multi-package repo with Lerna.
 
-14. When targeting the browser, use webpack.
+14. When targeting the browser, use webpack. (NO DECISION ON WEBPACK YET - E.G. WE USE ROLLUP FOR SOME LIBRARIES)
     1.  Generate minified and non-minified versions.
 
     2.  Ensure that all generated versions are debuggable through a mapping file.
