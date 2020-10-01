@@ -24,6 +24,7 @@ programming-language constants for the terms contained in that vocabulary.
 
 ## Existing research / guidelines
 
+- Richard Cyganiak: [RulesOfThumb](https://www.w3.org/wiki/User:Rcygania2/RulesOfThumb)
 - Axel Polleres, Haller (2019): [Are We Better Off With Just One Ontology on the Web?](http://www.semantic-web-journal.net/system/files/swj2307.pdf)
 
 - Widoco: [Vocab Best Practices](http://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html)
@@ -54,34 +55,40 @@ programming-language constants for the terms contained in that vocabulary.
 ### Prefixes
 
 - Use the RDF 1.1 Turtle syntax for the `base` and `prefix` directives (as it
-allows easier cut-and-paste into SPARQL queries), and use lower-case.
+allows easier cut-and-paste into SPARQL queries), and just for consistency we've
+chosen to use lower-case for these directives (no strong justification here,
+just easier on the eye!).
 
-- Provide a short prefix for your vocabulary, e.g.
+- Decide on a short prefix for your vocabulary, but don't get caught up in
+trying to make the prefix **_too_** short, e.g.
 ```
 prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
+
+# Long perfixes are fine (if justified!) too:
+prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
 ```
 
-- Try and avoid existing, commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
-to check if your preferred prefix is already in common use. Be aware that
-prefix.cc is not actively curated, and that anyone is free to add prefixes as
-they see fit. So if your preferred prefix is already registered, but on
+- Try to avoid existing commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
+to check if your preferred prefix is already in common use. But just be aware
+that prefix.cc is not actively curated, and that anyone is free to add prefixes
+as they see fit. So if your preferred prefix is already registered, but on
 investigation you determine that the existing vocbaulary is no longer active or
-in wide use, and that existing vocabulary wouldn't conflict conceptually with
-your vocabulary, then feel free to use that prefix (prefixes are only a
+is not in wide use, and that existing vocabulary wouldn't conflict conceptually
+with your vocabulary, then feel free to use that prefix (prefixes are only a
 convenient syntactic sugar available in some RDF serializations, and anyone
 using your vocabulary is completely free to apply whatever prefix they wish
-themselves, allowing them to easily avoid prefix name clashes).
+themselves, allowing them to avoid prefix name clashes).
 
 - Consider registering your prefix at [prefix.cc](http://prefix.cc/) once you
 think your vocabulary's chosen namespace URI will remain stable.
 
 ### Recommended prefixes
 
-- Because anyone can define whatever prefix they want for other vocabularies
+- Because anyone can define whatever prefix they want for vocabularies
 (e.g. the Dublin Core Term vocabulary is often used with prefix `dc:`, or 
 `dct:`, or `dcterms:`), we provide here the prefixes that we at Inrupt use for
-common vocabs, just to try and keep out prefix usage consistent across all our
-vocabularies:
+common vocabularies, just to try and keep out prefix usage consistent across all
+our RDF:
 
 ```
 prefix dcterms:  <http://purl.org/dc/terms/>
@@ -93,8 +100,9 @@ prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 - Use the HTTPS schema for your vocabulary's namespace (as opposed to HTTP).
 
-- Choose between a hash '#' namespace, or a slash '/' namespace. See
-[Appendix B: URI namespaces](https://www.w3.org/TR/swbp-vocab-pub/#naming).
+- Choose between a hash '#' namespace, or a slash '/' namespace. For more
+information on the distinction, see the W3C guidelines in
+ [Appendix B: URI namespaces](https://www.w3.org/TR/swbp-vocab-pub/#naming).
   - Simple guidance:
      - use a hash namespace if you consider your vocabulary 'small' (perhaps
       just a few dozen terms), and relatively self-contained.
@@ -107,14 +115,15 @@ prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
   hierarchy can be added later, whereas a hash namespace can only have a single
   (root) level of hierarchy.  
   
-- Use a persistent URI (to allow the links and references defined in your
-vocabulary to outlive your current organisation, or personally owned domain):
+- Consider using a persistent URI (to allow the links and references defined in
+your vocabulary to outlive your current organisation, or personally owned
+domain):
   - PURL (but it seems the Internet Archive are no longer supported it (i.e.
    they were not responding to update requests in 2019)).
   - The [w3id.org](https://w3id.org/) project (but as a GitHub repo, can it
    continue to scale indefinitely...?!)
 
-- Do not include a version number in the namespace URI
+- Do not include a version number in the namespace URI:
 ```
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 ```
@@ -126,6 +135,9 @@ form of versioning) in the namespace URI.
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 ```
+  - ...but my personal preference is to **_not_** include any attempt at 
+  explicit versioning in the URI (instead use explicit versioning meta-data
+  within the vocabulary itself).
    
 ### Providing meta-data for your vocabulary
 
@@ -135,8 +147,8 @@ and providing guidance for potential users of your vocabulary.
 #### Explicitly say your vocabulary is a vocabulary!
 
 - Firstly, explicitly define your vocabulary **_as_** a vocabulary. Simply use
-the Ontology term from the [OWL](http://www.w3.org/2002/07/owl#) vocabulary,
-e.g.
+the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
+vocabulary, e.g.
 ```
 myvocab: a owl:Ontology .
 ```
@@ -147,13 +159,13 @@ e.g.
 ```
 # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
 # don't provide the full namespace URI at the moment!
-myvocab a lit_core:Ontology .
+myvocab a artifact-generator:Ontology .
 ``` 
 
 #### Describe the vocabulary
 
-- Provide a basic descriptions of your vocabulary using `rdfs:label` and
-`rdfs:comment`, and use explicit language tags to denote the language e.g.
+- Provide basic descriptions of your vocabulary using `rdfs:label` and
+`rdfs:comment`, and use explicit language tags to denote the language, e.g.
 ```
 myvocab: a owl:Ontology ;
   rdfs:label "My guidelines vocab"@en ;
@@ -164,48 +176,71 @@ myvocab: a owl:Ontology ;
 
 #### Provide preferred prefix and namespace hints
 
-- Use [VANN](http://purl.org/vocab/vann/) for both 'preferredNamespacePrefix'
-and 'preferredNamespaceUri'.
+- Use the [VANN](http://purl.org/vocab/vann/) properties 
+`preferredNamespacePrefix` and `preferredNamespaceUri` to describe your
+recommended prefix (remember this is just a suggestion - users of your
+vocabulary can choose whatever prefix they like, including none at all!), and
+your namespace URI. 
 
 #### Explicitly state the vocabulary license
 
 - What license predicate to use?
-  - Dublin Core Terms: http://purl.org/dc/terms/license
-  - Creative Commons: http://creativecommons.org/ns#license
+  - Dublin Core Terms: `http://purl.org/dc/terms/license`
+  - Creative Commons: `http://creativecommons.org/ns#license`
   - Both?
 
 - What license value to use?
-  - http://purl.org/NET/rdflicense/MIT1.0.ttl
-  - http://www.opendatacommons.org/licenses/pddl/
-  - https://opensource.org/licenses/MIT
-  - https://creativecommons.org/publicdomain/zero/1.0/
+  - `http://purl.org/NET/rdflicense/MIT1.0.ttl`
+  - `http://www.opendatacommons.org/licenses/pddl/`
+  - `https://opensource.org/licenses/MIT`
+  - `https://creativecommons.org/publicdomain/zero/1.0/`
 
 #### Use rdfs:isDefinedBy
 
-- Each term in your vocabulary should state link back to the vocabulary itself
-using the `rdfs:isDefinedBy` property. This simply makes it easy for anyone
-dereferencing a term in isolation to link back to that term's defining
-vocabulary.
+- Each term in your vocabulary should link back to the vocabulary itself using
+the `rdfs:isDefinedBy` property. This just makes it easy for anyone
+dereferencing a term in isolation to link back to the overall vocabulary
+defining that term.
 
-#### Domain and range
+#### Versioning
 
-- Where appropriate use 'schema:domainIncludes' and 'schema:rangeIncludes' (in
-favour of the more semantically rigid 'rdfs:domain' and 'rdfs:range' (see [Schema.org justification])(https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
+- Use the `owl:versionInfo` property to provide basic vocabulary version
+information.
+  - This is **_not_** intended to follow the [SemVer](https://semver.org/)
+  convention common elsewhere.
+  - Currently we just use a simple `0.x` format until we think a vocabulary is
+  ready to be considered somewhat 'finished', at which point we would promote
+  the version to `1.0`, and continue to evolve from there.
+  
+#### Describe who created this vocabulary
+
+- Provide a simple description of who created this vocabulary using the 
+`dc:creator` property, e.g.
+```
+myVocab dcterms:creator "Inrupt, Inc." .
+```  
+
+## Domain and range
+
+- Where appropriate use `schema:domainIncludes` and `schema:rangeIncludes` (in
+favour of the more semantically rigid `rdfs:domain` and `rdfs:range` (see [Schema.org justification])(https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
 for more details on the rationale here). These properties can be very helpful in
 communicating the intent of vocabulary properties. 
 
 ## Publishing your vocabulary
 
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
-  - Content negotiation.
-
+  - Definitely support Content negotiation if at all possible, and support as
+  many RDF seralizations as possible (i.e. just use any common RDF library to
+  perform the appropriate serializations dynamically at runtime).
 
 ## General style guidelines
 
 - Avoid using the `base` directive, as it prevents the use of any relative IRIs
 in the remainder of the vocabulary.
+
 This is just a general guideline when working with RDF in general, as relative
-IRIs should generally be avoided in vocabularies, since they makes it harder to
-process the vocabulary in isolation (i.e. a the processor will need to provide a
-base IRI to convert any relative IRIs into absolute IRIs as mandated by RDF
+IRIs should generally be avoided **_in vocabularies_**, since they make it harder to
+process the vocabulary in isolation (i.e. any processor will need to provide a
+base IRI to convert any relative IRIs into absolute IRIs, as mandated by RDF
 itself). 
