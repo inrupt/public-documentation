@@ -84,11 +84,12 @@ think your vocabulary's chosen namespace URI will remain stable.
 
 ### Recommended prefixes
 
-- Because anyone can define whatever prefix they want for vocabularies
-(e.g. the Dublin Core Term vocabulary is often used with prefix `dc:`, or 
-`dct:`, or `dcterms:`), we provide here the prefixes that we at Inrupt use for
-common vocabularies, just to try and keep out prefix usage consistent across all
-our RDF:
+- Because anyone can define whatever prefix they want when re-using vocabularies
+(e.g. the Dublin Core Terms vocabulary is often used with the prefix `dc:`, or 
+`dct:`, or `dcterms:` (the Turtle serialization of the vocabulary itself uses
+`dcterms:`, so we do too!)), we provide here the prefixes that we at Inrupt
+use for common vocabularies, just to try and keep our prefix usage consistent
+across all our RDF:
 
 ```
 prefix dcterms:  <http://purl.org/dc/terms/>
@@ -194,13 +195,47 @@ your namespace URI.
   - `http://www.opendatacommons.org/licenses/pddl/`
   - `https://opensource.org/licenses/MIT`
   - `https://creativecommons.org/publicdomain/zero/1.0/`
+  
+- What other licensing properties should we use?  
+  - `http://creativecommons.org/ns#attributionURL` ?
 
-#### Use rdfs:isDefinedBy
+#### Use `rdfs:isDefinedBy`
 
 - Each term in your vocabulary should link back to the vocabulary itself using
 the `rdfs:isDefinedBy` property. This just makes it easy for anyone
 dereferencing a term in isolation to link back to the overall vocabulary
 defining that term.
+
+#### Use `dcterms:issued` and `dcterms:modified`
+
+- Use `dcterms:issued` (with the value typed as `xsd:date`) for your vocabulary
+to represent its official issue date (i.e. original date of release).
+
+- Update `dcterms:modified` (with the value typed as `xsd:date`) for your
+vocabulary each time the vocabulary is modified.
+
+- Use `dcterms:issued` for individual terms in your vocabulary if they were
+issued after the official issue date of the vocabulary itself.
+
+- Update `dcterms:modified` (with the value typed as `xsd:date`) for each
+vocabulary term each time you update any meta-data for that term.
+
+```
+myvocab: a owl:Ontology ;
+  :
+  dcterms:issued "2010-01-01"^^xsd:date ; 
+  dcterms:modified "2015-01-01"^^xsd:date . 
+
+myvocab:prop1 a rdf:Property ;
+  :
+  rdfs:comment "My first property - issued in original vocabulary."@en ;
+  dcterms:modified "2015-01-01"^^xsd:date . 
+
+myvocab:prop2 a rdf:Property ;
+  :
+  rdfs:comment "My new property - issued after the original vocabulary."@en ;
+  dcterms:issued "2020-10-02"^^xsd:date . 
+``` 
 
 #### Versioning
 
@@ -208,7 +243,7 @@ defining that term.
 information.
   - This is **_not_** intended to follow the [SemVer](https://semver.org/)
   convention common elsewhere.
-  - Currently we just use a simple `0.x` format until we think a vocabulary is
+  - Currently, we just use a simple `0.x` format until we think a vocabulary is
   ready to be considered somewhat 'finished', at which point we would promote
   the version to `1.0`, and continue to evolve from there.
   
@@ -216,6 +251,7 @@ information.
 
 - Provide a simple description of who created this vocabulary using the 
 `dc:creator` property, e.g.
+
 ```
 myVocab dcterms:creator "Inrupt, Inc." .
 ```  
@@ -240,7 +276,7 @@ communicating the intent of vocabulary properties.
 in the remainder of the vocabulary.
 
 This is just a general guideline when working with RDF in general, as relative
-IRIs should generally be avoided **_in vocabularies_**, since they make it harder to
-process the vocabulary in isolation (i.e. any processor will need to provide a
-base IRI to convert any relative IRIs into absolute IRIs, as mandated by RDF
+IRIs should generally be avoided **_in vocabularies_**, since they make it harder
+to process the vocabulary in isolation (i.e. any processor will need to provide
+a base IRI to convert any relative IRIs into absolute IRIs, as mandated by RDF
 itself). 
