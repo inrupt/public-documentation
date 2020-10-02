@@ -258,12 +258,20 @@ myVocab dcterms:creator "Inrupt, Inc." .
 
 ## Domain and range
 
-- Where appropriate use `schema:domainIncludes` and `schema:rangeIncludes` (in
-favour of the more semantically rigid `rdfs:domain` and `rdfs:range` (see [Schema.org justification])(https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
-for more details on the rationale here). These properties can be very helpful in
-communicating the intent of vocabulary properties. 
+- In general the concepts of `domain` and `range` can be very helpful in
+communicating the intent of vocabulary properties (see 
+[explanation](https://stackoverflow.com/questions/9065709/difference-between-domain-and-range-in-rdf-schema)
+(better explanation?)). However, the standard RDF properties of `rdfs:domain`
+and `rdfs:range` have very rigid semantics, meaning they can cause problems when
+a vocabulary using them is used with higher-level RDF tooling.
 
-## Publishing your vocabulary
+- So where possible use `schema:domainIncludes` and `schema:rangeIncludes` (see
+[Schema.org's justification](https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
+for more details on the rationale here (and note that Dublin Core also defines
+very similar terms: [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
+)). 
+
+# Publishing your vocabulary
 
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
   - Definitely support Content negotiation if at all possible, and support as
