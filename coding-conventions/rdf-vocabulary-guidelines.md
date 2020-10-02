@@ -47,10 +47,9 @@ programming-language constants for the terms contained in that vocabulary.
   - Mostly relevant for describing instance data, as opposed to vocabularies.
 - Live OWL Documentation Environment: [LODE](https://essepuntato.it/lode/)
 
-## Guidelines
+## High-Level Guidelines
 
 - Provide your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
-
 
 ### Prefixes
 
@@ -82,7 +81,7 @@ themselves, allowing them to avoid prefix name clashes).
 - Consider registering your prefix at [prefix.cc](http://prefix.cc/) once you
 think your vocabulary's chosen namespace URI will remain stable.
 
-### Recommended prefixes
+#### Recommended prefixes
 
 - Because anyone can define whatever prefix they want when re-using vocabularies
 (e.g. the Dublin Core Terms vocabulary is often used with the prefix `dc:`, or 
@@ -140,12 +139,12 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   explicit versioning in the URI (instead use explicit versioning meta-data
   within the vocabulary itself).
    
-### Providing meta-data for your vocabulary
+## Providing meta-data for your vocabulary
 
 It's very important that you describe your vocabulary, explaining its intent
 and providing guidance for potential users of your vocabulary.
 
-#### Explicitly say your vocabulary is a vocabulary!
+### Explicitly say your vocabulary is a vocabulary!
 
 - Firstly, explicitly define your vocabulary **_as_** a vocabulary. Simply use
 the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
@@ -163,19 +162,19 @@ e.g.
 myvocab a artifact-generator:Ontology .
 ``` 
 
-#### Describe the vocabulary
+### Describe the vocabulary
 
-- Provide basic descriptions of your vocabulary using `rdfs:label` and
-`rdfs:comment`, and use explicit language tags to denote the language, e.g.
+- Provide basic descriptions of your vocabulary using `dcterms:title` and
+`dcterms:description`, and use explicit language tags to denote the language, e.g.
 ```
 myvocab: a owl:Ontology ;
-  rdfs:label "My guidelines vocab"@en ;
-  rdfs:label "Mon vocabulaire de lignes directrices"@fr ;
-  rdfs:comment "A longer description of my guidelines vocab"@en ;
-  rdfs:comment "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
+  dcterms:title "My guidelines vocab"@en ;
+  dcterms:title "Mon vocabulaire de lignes directrices"@fr ;
+  dcterms:description "A longer description of my guidelines vocab"@en ;
+  dcterms:description "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
 ```
 
-#### Provide preferred prefix and namespace hints
+### Provide preferred prefix and namespace hints
 
 - Use the [VANN](http://purl.org/vocab/vann/) properties 
 `preferredNamespacePrefix` and `preferredNamespaceUri` to describe your
@@ -183,7 +182,11 @@ recommended prefix (remember this is just a suggestion - users of your
 vocabulary can choose whatever prefix they like, including none at all!), and
 your namespace URI. 
 
-#### Explicitly state the vocabulary license
+### Explicitly state the vocabulary license
+
+- Creative Commons seems nice, in that it has some native RDF support, see: 
+[Describing Copyright in RDF](https://creativecommons.org/ns#), but I don't know
+anything about it beyond this page!
 
 - What license predicate to use?
   - Dublin Core Terms: `http://purl.org/dc/terms/license`
@@ -199,7 +202,32 @@ your namespace URI.
 - What other licensing properties should we use?  
   - `http://creativecommons.org/ns#attributionURL` ?
 
-#### Use `rdfs:isDefinedBy`
+### Versioning
+
+- Use the `owl:versionInfo` property to provide basic vocabulary version
+information.
+  - This is **_not_** intended to follow the [SemVer](https://semver.org/)
+  convention common elsewhere.
+  - Currently, we just use a simple `0.x` format until we think a vocabulary is
+  ready to be considered somewhat 'finished', at which point we would promote
+  the version to `1.0`, and continue to evolve from there.
+  
+### Describe who created this vocabulary
+
+- Provide a reference to who (i.e. the organisation, or person) created this
+vocabulary using the `dc:creator` property. This property is intended to have a
+URI as it's value, and so if you (or your organisation) has a WebID, then that
+would be the perfect value for this property. If you don't have a meaningful
+URI to provide here, a simple textual string is also fine.
+
+```
+myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
+```  
+
+
+## Terms (the Classes, Properties, Individuals and Constants)
+
+### Use `rdfs:isDefinedBy`
 
 - Each term in your vocabulary should link back to the vocabulary itself using
 the `rdfs:isDefinedBy` property. This just makes it easy for anyone
@@ -237,26 +265,7 @@ myvocab:prop2 a rdf:Property ;
   dcterms:issued "2020-10-02"^^xsd:date . 
 ``` 
 
-#### Versioning
-
-- Use the `owl:versionInfo` property to provide basic vocabulary version
-information.
-  - This is **_not_** intended to follow the [SemVer](https://semver.org/)
-  convention common elsewhere.
-  - Currently, we just use a simple `0.x` format until we think a vocabulary is
-  ready to be considered somewhat 'finished', at which point we would promote
-  the version to `1.0`, and continue to evolve from there.
-  
-#### Describe who created this vocabulary
-
-- Provide a simple description of who created this vocabulary using the 
-`dc:creator` property, e.g.
-
-```
-myVocab dcterms:creator "Inrupt, Inc." .
-```  
-
-## Domain and range
+### Domain and range
 
 - In general the concepts of `domain` and `range` can be very helpful in
 communicating the intent of vocabulary properties (see 
@@ -271,7 +280,7 @@ for more details on the rationale here (and note that Dublin Core also defines
 very similar terms: [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
 )). 
 
-# Publishing your vocabulary
+## Publishing your vocabulary
 
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
   - Definitely support Content negotiation if at all possible, and support as
