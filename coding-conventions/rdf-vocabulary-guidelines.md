@@ -67,6 +67,11 @@ prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
 prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
 ```
 
+- If your prefix is made up of multiple words or acronyms (such as the
+`fibo-loan-loan-mod` example above), use hypens and not underscores. There is no
+particular reason for this preference (i.e. both are fine), it's just to
+maintain consistency across all of our vocabs.
+
 - Try to avoid existing commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
 to check if your preferred prefix is already in common use. But just be aware
 that prefix.cc is not actively curated, and that anyone is free to add prefixes
