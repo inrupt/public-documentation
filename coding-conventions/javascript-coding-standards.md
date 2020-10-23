@@ -102,6 +102,21 @@
 
 15. When including logging, use loglevel. (OR IS \'DEBUG\' A BETTER CHOICE HERE: <https://www.npmjs.com/package/debug> ?)
 
+16. When importing default resources from a 3rd-party library, we try to name
+that resource using the name used in the original library (which may require the
+developer delving into the source code of that library). 
+For instance, when importing `url-parse`, we do not attempt to rename that
+resource to something 'simpler', nor do we attempt to rename it to conform to
+our internal naming conventions, for example:
+
+    ```typescript
+    import URLParse from "url-parse"; // CORRECT - this is the name used in url-parse.
+    
+    import URL from "url-parse";      // INCORRECT - we don't attempt to simplify the name.
+    
+    import UrlParse from "url-parse"; // INCORRECT - we don't attempt to force conformance to our naming conventions.
+    ``` 
+
 ## Code structure (functional or object-oriented)
 
 Generally, projects use either a functional or an object-oriented approach, or some combination of the two paradigms. When deciding on which approach to take, consider your use-case and your target audience. Some prominent JavaScript projects (e.g. React, Vue, Express) are largely function-oriented, whereas others (e.g. Angular, Sequelize) lean more strongly on OOP principles.
