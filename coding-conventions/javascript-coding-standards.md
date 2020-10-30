@@ -1,14 +1,29 @@
-# JavaScript-Specific Guidelines 
+# JavaScript-Specific Guidelines
 
-## Organize code conceptually in packages 
+## Browser Support
 
--   Use a folder hierarchy to represent packages of related code.
+- Test and target compilation for the latest two versions of the most popular browsers. The current list is:
+  - Desktop:
+    -  Edge
+    -  Chrome
+    -  FireFox
+    -  Safari
+  - Mobile:
+    -  iOS/Safari
+    -  Android/Chrome
+    -  Android / Samsung Internet
+-  For applications, consider multiple screen sizes when implementing the UI:
+    - Small: 360x640
+    - Medium: 768x1024
+    - Large: 1366x768
+    - X-Large: 1600x900
 
--   Dependencies are usually tree-shaped.
+## Organize code conceptually in packages
 
-    -   Other graph shapes might indicate an architectural problem.
-
--   One index file with non-default ES6 exports exposes the public API.
+- Use a folder hierarchy to represent packages of related code.
+- Dependencies are usually tree-shaped.
+  - Other graph shapes might indicate an architectural problem.
+- One index file with non-default ES6 exports exposes the public API.
 
 ## Coding style
 
