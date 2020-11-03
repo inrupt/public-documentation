@@ -70,7 +70,7 @@
   native methods return `any`, like `JSON.parse` - cast those to a known type as soon as possible, preferably
   with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards).
 7. Write tests with Jest.
-  1. Put tests next to src files. In libraries, this is typically done by having a `foo.ts` and `foo.test.ts`
+  1. Put tests next to source files. In libraries, this is typically done by having a `foo.ts` and `foo.test.ts`
     file; in apps, this is typically done by
     using folders (`foo/index.jsx`, `foo/index.test.jsx`, `foo/styles.js`).
 8. Use ESLint.
