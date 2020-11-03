@@ -4,13 +4,13 @@
 
 - Test and target compilation for the latest two versions of the most popular browsers. The current list is:
   - Desktop:
-    -  Edge
-    -  Chrome
-    -  FireFox
-    -  Safari
+    -  Chrome / macOS, Ubuntu, Windows
+    -  FireFox / macOS, Ubuntu, Windows
+    -  Safari  / macOS
+    -  Edge (Chromium) / Windows
   - Mobile:
-    -  iOS/Safari
-    -  Android/Chrome
+    -  iOS / Safari
+    -  Android / Chrome
     -  Android / Samsung Internet
 -  For applications, consider multiple screen sizes when implementing the UI:
     - Small: 360x640
@@ -48,9 +48,9 @@
   - Classes have corresponding unit tests.
   - Replace dependencies by mocks with validated assumptions.
   - High coverage is important, but not a goal in itself.
-Ensure not only that the code is used, but that is effects are tested.
-- Write integration tests for groups of classes or functions.
-  - Since each has one specific responsibility, integration tests check how those responsibilities
+  - Ensure not only that the code is used, but that is effects are tested.
+  - Write integration tests for groups of classes or functions.
+  - Since each test has one specific responsibility, integration tests check how those responsibilities
     interact. 
 
 ## Tools and Quality Practices
@@ -67,7 +67,7 @@ Ensure not only that the code is used, but that is effects are tested.
   [prevent TypeScript from emitting their declarations](https://www.typescriptlang.org/v2/en/tsconfig#stripInternal)
 6. Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use
   it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some
-  native methods return `any`, like `JSON.parse` -  those to a known type as soon as possible, preferably
+  native methods return `any`, like `JSON.parse` - cast those to a known type as soon as possible, preferably
   with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards).
 7. Write tests with Jest.
   1. Put tests next to src files. In libraries, this is typically done by having a `foo.ts` and `foo.test.ts`
