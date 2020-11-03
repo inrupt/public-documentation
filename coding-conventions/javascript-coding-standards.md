@@ -60,7 +60,7 @@
 2. Use Node 12.
 3. Use npm.
 4. Use TypeScript for larger projects; ES6 JavaScript (through Babel) is acceptable for apps.
-  1. Put source code on the `src` folder.
+  1. Put source code in the `src` folder.
   2. Put transpiled code in the `dist` folder.
   3. Add non-default export to an index file, ensuring that tree-shaking is possible with the `sideEffects` flag in `package.json`.
 5. Annotate everything in the API that\'s intended for internal use, but is externally accessible, as `@internal` in its TSDoc, and
