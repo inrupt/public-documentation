@@ -87,7 +87,7 @@
 14. When building applications, use the Next.js framework. For documenting components, use Storybook. For libraries, use rollup.
   1. Generate minified and non-minified versions.
   2. Ensure that all generated versions export a mapping file.
-15. When including logging, use loglevel.
+15. When including logging, use [loglevel](https://www.npmjs.com/package/loglevel).
 
 ## Code structure (functional or object-oriented)
 
