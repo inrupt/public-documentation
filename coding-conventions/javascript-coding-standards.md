@@ -63,7 +63,7 @@
   1. Put source code on the `src` folder.
   2. Put transpiled code in the `dist` folder.
   3. Add non-default export to an index file, ensuring that tree-shaking is possible with the `sideEffects` flag in `package.json`.
-5. Marking everything API that\'s intended for internal use but is externally accessible as `@internal` in its TSDoc, and
+5. Annotate everything in the API that\'s intended for internal use, but is externally accessible, as `@internal` in its TSDoc, and
   [prevent TypeScript from emitting their declarations](https://www.typescriptlang.org/v2/en/tsconfig#stripInternal)
 6. Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use
   it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some
