@@ -48,7 +48,7 @@
   - Classes have corresponding unit tests.
   - Replace dependencies by mocks with validated assumptions.
   - High coverage is important, but not a goal in itself.
-  - Ensure not only that the code is used, but that is effects are tested.
+  - Ensure not only that the code is used, but that its effects are tested.
   - Write integration tests for groups of classes or functions.
   - Since each test has one specific responsibility, integration tests check how those responsibilities
     interact. 
