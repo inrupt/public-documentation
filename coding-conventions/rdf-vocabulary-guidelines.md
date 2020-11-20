@@ -88,17 +88,26 @@ think your vocabulary's chosen namespace URI will remain stable.
 
 #### Recommended prefixes
 
+<<<<<<< HEAD
 - Use preferred namespace prefixes. Justification: Consistency; Readability.
-For example: Anyone can define whatever prefix they want when using vocabularies,
-so the Dublin Core Terms vocabulary is often used with the prefix `dc:`, or 
-`dct:`, or `dcterms:` which can be confusing. Since the [Turtle serialization of the vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl)
-itself uses `dcterms:`, so do we! The common preferred namespace prefixes that we use at Inrupt
-for vocabularies across all our RDF are:
+For example: Anyone can define whatever prefix they want when using
+vocabularies, so the Dublin Core Terms vocabulary is often used with different
+prefixes, such as `dc:`, or `dct:`, or `dcterms:`, which can be confusing. Since
+the [Turtle serialization of the vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl)
+itself uses `dcterms:`, so do we!
+
+Here we list the preferred namespace prefixes that we use at Inrupt for
+vocabularies whose prefix might not be immediately obvious across all our RDF
+are (if you're unsure of a prefix to use, just try and look for existing usage
+of that vocbaulary in our RDF, or ask at info@inrupt.com):
 
 ```
 prefix dcterms:  <http://purl.org/dc/terms/>
 prefix schema:   <http://schema.org/>
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
+prefix ws:       <http://www.w3.org/ns/pim/space#>
+prefix shacl:    <http://www.w3.org/ns/shacl#>
+prefix solid:    <http://www.w3.org/ns/solid/terms#>
 ```
 
 ### Namespace URI
