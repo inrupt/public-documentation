@@ -332,13 +332,17 @@ communicating the intent of vocabulary properties (see
 [explanation](https://stackoverflow.com/questions/9065709/difference-between-domain-and-range-in-rdf-schema)
 (better explanation?)). However, the standard RDF properties of `rdfs:domain`
 and `rdfs:range` have very rigid semantics, meaning they can cause problems when
-a vocabulary using them is used with higher-level RDF tooling.
+a vocabulary using them is used with higher-level RDF tooling (such as
+inferencing or reasoning). For a relatively lightweight introduction to these
+consequences, see [Inferencing](https://www.w3.org/standards/semanticweb/inference),
+or more formally [here](https://www.w3.org/TR/rdf-schema/#ch_properties), from
+the official specification.
 
-- So where possible use `schema:domainIncludes` and `schema:rangeIncludes` (see
-[Schema.org's justification](https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
-for more details on the rationale here (and note that Dublin Core also defines
-very similar terms: [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
-)). 
+  - So where possible use `schema:domainIncludes` and `schema:rangeIncludes` (see
+  [Schema.org's justification](https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
+  for more details on the rationale here (and note that Dublin Core also defines
+  very similar terms: [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
+  )). 
 
 ## Publishing your vocabulary
 
