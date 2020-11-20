@@ -60,7 +60,7 @@ We consider RDF 1.1 Turtle parsers widely deployed (see [Turtle 1.1 Spec IRIs No
 
 - Use a short prefix for your vocabulary, but don't get caught up in
 trying to make the prefix **_too_** short. For example:
-```
+```turtle
 prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
 
 # Long prefixes are fine too if justified
@@ -88,7 +88,6 @@ think your vocabulary's chosen namespace URI will remain stable.
 
 #### Recommended prefixes
 
-<<<<<<< HEAD
 - Use preferred namespace prefixes. Justification: Consistency; Readability.
 For example: Anyone can define whatever prefix they want when using
 vocabularies, so the Dublin Core Terms vocabulary is often used with different
@@ -101,7 +100,7 @@ vocabularies whose prefix might not be immediately obvious across all our RDF
 are (if you're unsure of a prefix to use, just try and look for existing usage
 of that vocbaulary in our RDF, or ask at info@inrupt.com):
 
-```
+```turtle
 prefix dcterms:  <http://purl.org/dc/terms/>
 prefix schema:   <http://schema.org/>
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
@@ -138,14 +137,14 @@ domain):
    continue to scale indefinitely...?!)
 
 - Do not include a version number in the namespace URI:
-```
+```turtle
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 ```
  
 - Open question on whether to include year (and possibly month) (as a simple
 form of versioning) in the namespace URI.
   - It's fairly common, especially in W3C vocabularys, e.g.
-```
+```turtle
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 ```
@@ -163,14 +162,14 @@ and providing guidance for potential users of your vocabulary.
 - Firstly, explicitly define your vocabulary **_as_** a vocabulary. Simply use
 the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
 vocabulary, e.g.
-```
+```turtle
 myvocab: a owl:Ontology .
 ```
 
 - Optionally, also type your vocabulary as an Artifact Generator-aware
 vocabulary to allow automatic machine enforcement of many of these guidelines, 
 e.g.
-```
+```turtle
 # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
 # don't provide the full namespace URI at the moment!
 myvocab a artifact-generator:Ontology .
@@ -180,7 +179,7 @@ myvocab a artifact-generator:Ontology .
 
 - Provide basic descriptions of your vocabulary using `dcterms:title` and
 `dcterms:description`, and use explicit language tags to denote the language, e.g.
-```
+```turtle
 myvocab: a owl:Ontology ;
   dcterms:title "My guidelines vocab"@en ;
   dcterms:title "Mon vocabulaire de lignes directrices"@fr ;
@@ -191,7 +190,7 @@ myvocab: a owl:Ontology ;
 - Also provide `rdfs:seeAlso` references to any relevant documentation or
 specifications that might relate to this vocabulary.
 
-```
+```turtle
 myvocab: a owl:Ontology ;
   dcterms:title "My Solid-related vocab"@en ;
   rdfs:seeAlso <https://solid.github.io/specification/> .
@@ -240,7 +239,7 @@ information.
   
   - A very interesting idea is to instead use the `owl:versionInfo` predicate to
   reference richer meta-data for each vocbaulary change, e.g:
-    ```
+    ```turtle
     myvocab:
         a owl:Ontology ;
         rdfs:isDefinedBy myvocab: ;
@@ -282,14 +281,14 @@ URI as it's value, and so if you (or your organisation) has a WebID, then that
 would be the perfect value for this property. If you don't have a meaningful
 URI to provide here, a simple textual string is also fine.
 
-```
+```turtle
 myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
 ```  
 
 - Also, feel free to include contributors using the `dcterms:contributor` 
 predicate (using individuals WebID's if possible):
 
-```
+```turtle
 myVocab dcterms:contributor 
   <https://inrupt.com/employee/12345/profile/card/#me> ,
   <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
@@ -319,7 +318,7 @@ issued after the official issue date of the vocabulary itself.
 - Update `dcterms:modified` (with the value typed as `xsd:date`) for each
 vocabulary term each time you update any meta-data for that term.
 
-```
+```turtle
 myvocab: a owl:Ontology ;
   :
   dcterms:issued "2010-01-01"^^xsd:date ; 
