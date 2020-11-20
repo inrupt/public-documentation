@@ -275,6 +275,16 @@ URI to provide here, a simple textual string is also fine.
 myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
 ```  
 
+- Also, feel free to include contributors using the `dcterms:contributor` 
+predicate (using individuals WebID's if possible):
+
+```
+myVocab dcterms:contributor 
+  <https://inrupt.com/employee/12345/profile/card/#me> ,
+  <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
+  "friendly-volunteer@gmail.com" .
+```  
+
 ## Terms (the Classes, Properties, Individuals and Constants)
 
 ### Use `rdfs:isDefinedBy`
