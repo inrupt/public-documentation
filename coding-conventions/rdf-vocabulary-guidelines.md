@@ -71,15 +71,15 @@ particular reason for this preference (i.e. both are fine), it's just to
 maintain consistency across all of our vocabs.
 
 - Try to avoid existing commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
-to check if your preferred prefix is already in common use. But just be aware
+to check if your preferred prefix is already in common use; but just be aware
 that prefix.cc is not actively curated, and that anyone is free to add prefixes
-as they see fit. So if your preferred prefix is already registered, but on
-investigation you determine that the existing vocbaulary is no longer active or
-is not in wide use, and that existing vocabulary wouldn't conflict conceptually
-with your vocabulary, then feel free to use that prefix (prefixes are only a
+as they see fit. If your preferred prefix is already registered on prefix.cc but on
+investigation, you determine that the existing vocabulary is no longer active or
+is not in wide use, and that the existing vocabulary wouldn't conflict conceptually
+with your vocabulary, then feel free to use that prefix. Prefixes are only a
 convenient syntactic sugar available in some RDF serializations, and anyone
 using your vocabulary is completely free to apply whatever prefix they wish
-themselves, allowing them to avoid prefix name clashes).
+themselves, allowing them to avoid prefix name clashes.
 
 - Consider registering your prefix at [prefix.cc](http://prefix.cc/) once you
 think your vocabulary's chosen namespace URI will remain stable.
