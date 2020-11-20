@@ -48,6 +48,8 @@ provide `rdfs:label` and `rdfs:comment` values, in at least English.
 
 ## High-Level Guidelines
 
+### Serialization
+
 - Provide your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
 
 ### Prefixes
