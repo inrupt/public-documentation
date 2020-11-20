@@ -88,12 +88,12 @@ think your vocabulary's chosen namespace URI will remain stable.
 
 #### Recommended prefixes
 
-- Because anyone can define whatever prefix they want when re-using vocabularies
-(e.g. the Dublin Core Terms vocabulary is often used with the prefix `dc:`, or 
-`dct:`, or `dcterms:` (the Turtle serialization of the vocabulary itself uses
-`dcterms:`, so we do too!)), we provide here the prefixes that we at Inrupt
-use for common vocabularies, just to try and keep our prefix usage consistent
-across all our RDF:
+- Use preferred namespace prefixes. Justification: Consistency; Readability.
+For example: Anyone can define whatever prefix they want when using vocabularies,
+so the Dublin Core Terms vocabulary is often used with the prefix `dc:`, or 
+`dct:`, or `dcterms:` which can be confusing. Since the [Turtle serialization of the vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl)
+itself uses `dcterms:`, so do we! The common preferred namespace prefixes that we use at Inrupt
+for vocabularies across all our RDF are:
 
 ```
 prefix dcterms:  <http://purl.org/dc/terms/>
