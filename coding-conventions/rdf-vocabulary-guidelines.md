@@ -1,26 +1,25 @@
 # RDF Vocabulary Guidelines
 
 ## Overview
-The ultimate goal of this documentation is to provide a professional, cohesive
-set of general guidelines for anyone wishing to create, extend or maintain RDF
+The goal of this documentation is to suggest a cohesive
+set of rules for anyone wishing to create, extend and/or maintain RDF
 vocabularies. It borrows extensively from existing (and continually evolving)
 research in this space, but aims to provide a one-stop-shop for anyone looking
 for current industry best practices in relation to RDF vocabulary design.
 
-
 ## The Inrupt Artifact Generator
 
 Although multiple attempts have been made at producing RDF vocabulary
-guidelines (and we link to a number of examples below), a fundamental problem is
+guidelines (see links in the [Existing research / guidelines section](#existing-research--guidelines) below), a fundamental problem is
 that these guidelines are generally written in academic papers, or described in
 prose, and therefore not machine-readable or enforceable.
  
 One nice consequence of Inrupt having an [Artifact Generator]() is that if a
 vocabulary is explicitly declared as being of a specific type, then our
-generator can enforce a number of these guidelines automatically (e.g. all
-Classes and Properties must provide `rdfs:label` and `rdfs:comment` values, in
-at least English) before generating source-code artifacts that contain
-programming-language constants for the terms contained in that vocabulary.
+generator can enforce a number of rules automatically before generating
+source-code that contains consistent programming artifacts for the terms
+contained in an RDF vocabulary. For example, all Classes and Properties must
+provide `rdfs:label` and `rdfs:comment` values, in at least English.
 
 ## Existing research / guidelines
 
@@ -53,17 +52,16 @@ programming-language constants for the terms contained in that vocabulary.
 
 ### Prefixes
 
-- Use the RDF 1.1 Turtle syntax for the `base` and `prefix` directives (as it
-allows easier cut-and-paste into SPARQL queries), and just for consistency we've
-chosen to use lower-case for these directives (no strong justification here,
-just easier on the eye!).
+- Use the lowercase SPARQL syntax for `base` and `prefix` declarations. Justification:
+It allows easier cut-and-paste into SPARQL queries; Consistency; Readability;
+We consider RDF 1.1 Turtle parsers widely deployed (see [Turtle 1.1 Spec IRIs Note](https://www.w3.org/TR/turtle/#sec-iri).
 
-- Decide on a short prefix for your vocabulary, but don't get caught up in
-trying to make the prefix **_too_** short, e.g.
+- Use a short prefix for your vocabulary, but don't get caught up in
+trying to make the prefix **_too_** short. For example:
 ```
 prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
 
-# Long perfixes are fine (if justified!) too:
+# Long prefixes are fine too if justified
 prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
 ```
 
@@ -179,6 +177,15 @@ myvocab: a owl:Ontology ;
   dcterms:description "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
 ```
 
+- Also provide `rdfs:seeAlso` references to any relevant documentation or
+specifications that might relate to this vocabulary.
+
+```
+myvocab: a owl:Ontology ;
+  dcterms:title "My Solid-related vocab"@en ;
+  rdfs:seeAlso <https://solid.github.io/specification/> .
+```
+
 ### Provide preferred prefix and namespace hints
 
 - Use the [VANN](http://purl.org/vocab/vann/) properties 
@@ -211,11 +218,50 @@ anything about it beyond this page!
 
 - Use the `owl:versionInfo` property to provide basic vocabulary version
 information.
-  - This is **_not_** intended to follow the [SemVer](https://semver.org/)
-  convention common elsewhere.
+  - Currently, this is **_not_** intended to follow the [SemVer](https://semver.org/)
+  convention common elsewhere (just to keep things as simple as possible, and
+  also because we currently (optionally) can append this version string to the
+  filenames and classnames of generated programming-language source code
+  artifacts that we use to ease working with vocbaularies generally).
   - Currently, we just use a simple `0.x` format until we think a vocabulary is
   ready to be considered somewhat 'finished', at which point we would promote
   the version to `1.0`, and continue to evolve from there.
+  
+  - A very interesting idea is to instead use the `owl:versionInfo` predicate to
+  reference richer meta-data for each vocbaulary change, e.g:
+    ```
+    myvocab:
+        a owl:Ontology ;
+        rdfs:isDefinedBy myvocab: ;
+        owl:versionInfo [
+                dc:date "2017-06-06"^^xsd:date ;
+                rdfs:seeAlso <https://github.com/me/my-vocab/pull/1> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob372836/myvocab.ttl> ;
+            ] ;
+        owl:versionInfo [
+                dc:date "2019-10-26"^^xsd:date ;
+                rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob232829/myvocab.ttl> ;
+            ] ;
+        owl:versionInfo [
+                dc:date "2020-01-02"^^xsd:date ;
+                rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob989929/myvocab.ttl> ;
+            ] .  
+    ```
+  This example uses blank nodes, meaning we can't easily reference each
+  individual version change, so using acutal (relative) IRIs instead would
+  probably be preferable.
+  - As a further extension, we could look at using the [PROV-O](https://www.w3.org/TR/prov-o/)
+  ontology to model these versioning changes even more richly and explicitly.
+
+- There are other OWL predicates we might consider in relation to versioning 
+  too, for example `owl:priorVersion`, `owl:backwardCompatibleWith`, and 
+  `owl:incompatibleWith`.
+  
+- Also keep in mind that OWL defines `owl:deprecated`, `owl:DeprecatedClass` and
+  `owl:DeprecatedProperty`, and we recommend using `owl:deprecated` when
+  appropriate (see usage examples [here](https://www.w3.org/2007/OWL/wiki/Quick_Reference_Guide)).
   
 ### Describe who created this vocabulary
 
@@ -228,7 +274,6 @@ URI to provide here, a simple textual string is also fine.
 ```
 myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
 ```  
-
 
 ## Terms (the Classes, Properties, Individuals and Constants)
 
