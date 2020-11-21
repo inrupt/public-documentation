@@ -138,25 +138,30 @@ domain. For example:
   - Do you know of any other services or projects? Suggestions and/or PRs 
   welcome!
 
-- Do not include a version number in the namespace URI. Justification: The impracticalities of migrating namespaces in a global, distributed and decentralised environment (see the Term-centric Semantic Web
-Vocabulary Annotations W3C editor draft for [an historical note on the subject](https://www.w3.org/2003/06/sw-vocab-status/note#history)):
+- Do **_not_** include version numbers in the namespace URI. The justification
+is simply the impracticalities of migrating namespaces in a global, distributed
+and decentralised environment (see the "Term-centric Semantic Web Vocabulary
+Annotations" W3C editor draft for
+[an historical note on the lessons learned on this subject](https://www.w3.org/2003/06/sw-vocab-status/note#history)):
 
     ```turtle
+    # Even though the terms defined by FOAF did change over time, the version number in the namespace never did! 
     prefix foaf: <http://xmlns.com/foaf/0.1/>
     ```
  
 - Open question on whether to include year (and possibly month) (as a simple
 form of versioning) in the namespace URI.
-  - It's fairly common, especially in W3C vocabularys, e.g.
+  - It's a fairly common practice, especially in W3C vocabularies, for example:
   
     ```turtle
     prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
     ```
     
-  - ...but my personal preference is to **_not_** include any attempt at 
-  explicit versioning in the URI (instead use explicit versioning meta-data
-  within the vocabulary itself).
+  - ...but our preference is to **_not_** include any attempt at explicit
+  versioning, including dates or years, in the namespace URI itself (instead use
+  explicit versioning meta-data within the vocabulary itself and use status or
+  deprecation meta-data on individual terms if appropriate).
    
 ## Providing meta-data for your vocabulary
 
@@ -167,7 +172,7 @@ and providing guidance for potential users of your vocabulary.
 
 - Firstly, explicitly define your vocabulary **_as_** a vocabulary. Simply use
 the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
-vocabulary, e.g.
+vocabulary, for example:
 
     ```turtle
     myvocab: a owl:Ontology .
@@ -175,7 +180,7 @@ vocabulary, e.g.
 
 - Optionally, also type your vocabulary as an Artifact Generator-aware
 vocabulary to allow automatic machine enforcement of many of these guidelines, 
-e.g.
+for example:
 
     ```turtle
     # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
@@ -186,7 +191,8 @@ e.g.
 ### Describe the vocabulary
 
 - Provide basic descriptions of your vocabulary using `dcterms:title` and
-`dcterms:description`, and use explicit language tags to denote the language, e.g.
+`dcterms:description`, and use explicit language tags to denote the language,
+for example:
 
     ```turtle
     myvocab: a owl:Ontology ;
@@ -281,6 +287,19 @@ information.
 - Also keep in mind that OWL defines `owl:deprecated`, `owl:DeprecatedClass` and
   `owl:DeprecatedProperty`, and we recommend using `owl:deprecated` when
   appropriate (see usage examples [here](https://www.w3.org/2007/OWL/wiki/Quick_Reference_Guide)).
+  
+- Consider labelling individual terms in your vocabulary with 'status' values
+using the `term_status` term from the [SemWeb Vocab Status ontology](http://www.w3.org/2003/06/sw-vocab-status/ns#),
+particularly if a term is intended for testing, or considered unstable.
+
+    ```turtle
+    prefix :         <http://example.com/vocab/test-new-idea#>
+    prefix status:   <http://www.w3.org/2003/06/sw-vocab-status/ns#>
+    
+    <:propertyForTesting> status:term_status "testing" .
+  
+    <:ExperimentalClass> status:term_status "unstable" .
+    ```
   
 ### Describe who created this vocabulary
 
