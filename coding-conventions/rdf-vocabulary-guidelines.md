@@ -128,13 +128,14 @@ information on the distinction, see the W3C guidelines in
   hierarchy can be added later, whereas a hash namespace can only have a single
   (root) level of hierarchy.  
   
-- Consider using a persistent URI (to allow the links and references defined in
+- Consider using a persistent URI to allow the links and references defined in
 your vocabulary to outlive your current organisation, or personally owned
-domain):
-  - PURL (but it seems the Internet Archive are no longer supported it (i.e.
-   they were not responding to update requests in 2019)).
-  - The [w3id.org](https://w3id.org/) project (but as a GitHub repo, can it
-   continue to scale indefinitely...?!)
+domain. For example:
+  - [PURL](https://purl.org/), but it seems the Internet Archive are no longer supporting it (i.e.
+   they were not responding to update requests in 2019).
+  - The [w3id.org project](https://w3id.org/), but as a GitHub repo can it
+   continue to scale indefinitely...?!
+  - Another service/project we don't know? Suggestion and PRs welcome!
 
 - Do not include a version number in the namespace URI:
 ```turtle
