@@ -60,12 +60,12 @@ We consider RDF 1.1 Turtle parsers widely deployed (see [Turtle 1.1 Spec IRIs No
 
 - Use a short prefix for your vocabulary, but don't get caught up in
 trying to make the prefix **_too_** short. For example:
-```turtle
-prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
-
-# Long prefixes are fine too if justified
-prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
-```
+    ```turtle
+    prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
+    
+    # Long prefixes are fine too if justified
+    prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
+    ```
 
 - If your prefix is made up of multiple words or acronyms (such as the
 `fibo-loan-loan-mod` example above), use hypens and not underscores. There is no
@@ -135,20 +135,24 @@ domain. For example:
    they were not responding to update requests in 2019).
   - The [w3id.org project](https://w3id.org/), but as a GitHub repo can it
    continue to scale indefinitely...?!
-  - Another service/project we don't know? Suggestion and PRs welcome!
+  - Do you know of any other services or projects? Suggestions and/or PRs 
+  welcome!
 
 - Do not include a version number in the namespace URI:
-```turtle
-prefix foaf: <http://xmlns.com/foaf/0.1/>
-```
+
+    ```turtle
+    prefix foaf: <http://xmlns.com/foaf/0.1/>
+    ```
  
 - Open question on whether to include year (and possibly month) (as a simple
 form of versioning) in the namespace URI.
   - It's fairly common, especially in W3C vocabularys, e.g.
-```turtle
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
-```
+  
+    ```turtle
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+    ```
+    
   - ...but my personal preference is to **_not_** include any attempt at 
   explicit versioning in the URI (instead use explicit versioning meta-data
   within the vocabulary itself).
@@ -163,39 +167,42 @@ and providing guidance for potential users of your vocabulary.
 - Firstly, explicitly define your vocabulary **_as_** a vocabulary. Simply use
 the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
 vocabulary, e.g.
-```turtle
-myvocab: a owl:Ontology .
-```
+
+    ```turtle
+    myvocab: a owl:Ontology .
+    ```
 
 - Optionally, also type your vocabulary as an Artifact Generator-aware
 vocabulary to allow automatic machine enforcement of many of these guidelines, 
 e.g.
-```turtle
-# NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
-# don't provide the full namespace URI at the moment!
-myvocab a artifact-generator:Ontology .
-``` 
+
+    ```turtle
+    # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
+    # don't provide the full namespace URI at the moment!
+    myvocab a artifact-generator:Ontology .
+    ``` 
 
 ### Describe the vocabulary
 
 - Provide basic descriptions of your vocabulary using `dcterms:title` and
 `dcterms:description`, and use explicit language tags to denote the language, e.g.
-```turtle
-myvocab: a owl:Ontology ;
-  dcterms:title "My guidelines vocab"@en ;
-  dcterms:title "Mon vocabulaire de lignes directrices"@fr ;
-  dcterms:description "A longer description of my guidelines vocab"@en ;
-  dcterms:description "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
-```
+
+    ```turtle
+    myvocab: a owl:Ontology ;
+      dcterms:title "My guidelines vocab"@en ;
+      dcterms:title "Mon vocabulaire de lignes directrices"@fr ;
+      dcterms:description "A longer description of my guidelines vocab"@en ;
+      dcterms:description "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
+    ```
 
 - Also provide `rdfs:seeAlso` references to any relevant documentation or
 specifications that might relate to this vocabulary.
 
-```turtle
-myvocab: a owl:Ontology ;
-  dcterms:title "My Solid-related vocab"@en ;
-  rdfs:seeAlso <https://solid.github.io/specification/> .
-```
+    ```turtle
+    myvocab: a owl:Ontology ;
+      dcterms:title "My Solid-related vocab"@en ;
+      rdfs:seeAlso <https://solid.github.io/specification/> .
+    ```
 
 ### Provide preferred prefix and namespace hints
 
@@ -282,19 +289,19 @@ URI as it's value, and so if you (or your organisation) has a WebID, then that
 would be the perfect value for this property. If you don't have a meaningful
 URI to provide here, a simple textual string is also fine.
 
-```turtle
-myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
-```  
+    ```turtle
+    myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
+    ```  
 
 - Also, feel free to include contributors using the `dcterms:contributor` 
 predicate (using individuals WebID's if possible):
 
-```turtle
-myVocab dcterms:contributor 
-  <https://inrupt.com/employee/12345/profile/card/#me> ,
-  <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
-  "friendly-volunteer@gmail.com" .
-```  
+    ```turtle
+    myVocab dcterms:contributor 
+      <https://inrupt.com/employee/12345/profile/card/#me> ,
+      <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
+      "friendly-volunteer@gmail.com" .
+    ```  
 
 ## Terms (the Classes, Properties, Individuals and Constants)
 
@@ -319,22 +326,22 @@ issued after the official issue date of the vocabulary itself.
 - Update `dcterms:modified` (with the value typed as `xsd:date`) for each
 vocabulary term each time you update any meta-data for that term.
 
-```turtle
-myvocab: a owl:Ontology ;
-  :
-  dcterms:issued "2010-01-01"^^xsd:date ; 
-  dcterms:modified "2015-01-01"^^xsd:date . 
-
-myvocab:prop1 a rdf:Property ;
-  :
-  rdfs:comment "My first property - issued in original vocabulary."@en ;
-  dcterms:modified "2015-01-01"^^xsd:date . 
-
-myvocab:prop2 a rdf:Property ;
-  :
-  rdfs:comment "My new property - issued after the original vocabulary."@en ;
-  dcterms:issued "2020-10-02"^^xsd:date . 
-``` 
+    ```turtle
+    myvocab: a owl:Ontology ;
+      :
+      dcterms:issued "2010-01-01"^^xsd:date ; 
+      dcterms:modified "2015-01-01"^^xsd:date . 
+    
+    myvocab:prop1 a rdf:Property ;
+      :
+      rdfs:comment "My first property - issued in original vocabulary."@en ;
+      dcterms:modified "2015-01-01"^^xsd:date . 
+    
+    myvocab:prop2 a rdf:Property ;
+      :
+      rdfs:comment "My new property - issued after the original vocabulary."@en ;
+      dcterms:issued "2020-10-02"^^xsd:date . 
+    ``` 
 
 ### Domain and range
 
