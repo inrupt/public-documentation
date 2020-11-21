@@ -138,7 +138,8 @@ domain. For example:
   - Do you know of any other services or projects? Suggestions and/or PRs 
   welcome!
 
-- Do not include a version number in the namespace URI:
+- Do not include a version number in the namespace URI. Justification: The impracticalities of migrating namespaces in a global, distributed and decentralised environment (see the Term-centric Semantic Web
+Vocabulary Annotations W3C editor draft for [an historical note on the subject](https://www.w3.org/2003/06/sw-vocab-status/note#history)):
 
     ```turtle
     prefix foaf: <http://xmlns.com/foaf/0.1/>
