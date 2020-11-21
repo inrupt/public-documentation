@@ -197,9 +197,9 @@ for example:
     ```turtle
     myvocab: a owl:Ontology ;
       dcterms:title "My guidelines vocab"@en ;
-      dcterms:title "Mon vocabulaire de lignes directrices"@fr ;
+      dcterms:title "Mon vocabulaire des recommandations"@fr ;
       dcterms:description "A longer description of my guidelines vocab"@en ;
-      dcterms:description "Une description plus longue de mon vocabulaire de lignes directrices"@fr .
+      dcterms:description "Une description plus longue de mon vocabulaire des recommandations"@fr .
     ```
 
 - Also provide `rdfs:seeAlso` references to any relevant documentation or
