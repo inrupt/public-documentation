@@ -113,13 +113,13 @@ prefix solid:    <http://www.w3.org/ns/solid/terms#>
 
 - Use the HTTPS schema for your vocabulary's namespace (as opposed to HTTP).
 
-- Choose between a hash '#' namespace, or a slash '/' namespace. For more
+- Choose between a hash '#' namespace or a slash '/' namespace. For more
 information on the distinction, see the W3C guidelines in
  [Appendix B: URI namespaces](https://www.w3.org/TR/swbp-vocab-pub/#naming).
   - Simple guidance:
      - use a hash namespace if you consider your vocabulary 'small' (perhaps
       just a few dozen terms), and relatively self-contained.
-     - use a slash namespace if think your vocabulary has potential to grow
+     - use a slash namespace if you think your vocabulary has potential to grow
       substantially, or might be broken up into sub-vocabularies.
   - Important to note: a hash namespace means the entire vocab will be retrieved
   in one GET request, whereas a slash namespace allows each individual term to
