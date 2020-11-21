@@ -215,9 +215,10 @@ specifications that might relate to this vocabulary.
 
 - Use the [VANN](http://purl.org/vocab/vann/) properties 
 `preferredNamespacePrefix` and `preferredNamespaceUri` to describe your
-recommended prefix (remember this is just a suggestion - users of your
-vocabulary can choose whatever prefix they like, including none at all!), and
-your namespace URI. 
+recommended prefix and namespace URI respectively. Remember that the preferred
+prefix value is only a suggestion to users of your vocabulary to encourage
+consistent usage across all users - but they are always free to choose whatever
+prefix they like, including none at all! 
 
 ### Explicitly state the vocabulary license
 
