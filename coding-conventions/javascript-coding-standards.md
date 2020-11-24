@@ -17,6 +17,11 @@
     - Medium: 768x1024
     - Large: 1366x768
     - X-Large: 1600x900
+    
+## Node.js Support
+
+- Test in all active LTS versions (currently 10, 12, and 14.)
+- Use NPM, not yarn.
 
 ## Organize code conceptually in packages
 
@@ -57,8 +62,6 @@
 
 1. Add an `.nvmrc` file to your repository, and [set up your shell](https://github.com/nvm-sh/nvm#deeper-shell-integration)
   to read it and switch to the correct Node/npm version automatically.
-2. Use Node 12.
-3. Use npm.
 4. Use TypeScript for larger projects; ES6 JavaScript (through Babel) is acceptable for apps.
   1. Put source code in the `src` folder.
   2. Put transpiled code in the `dist` folder.
