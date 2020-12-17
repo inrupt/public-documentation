@@ -42,10 +42,10 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
   - Although more focused on instance data, it does describe the lack of
   vocabulary re-use in the real-world. 
   - Recommends strict adherence to either hash or slash namespaces.
-  - It links to [43](https://www.researchgate.net/publication/298213412_A_Systematic_Analysis_of_Term_Reuse_and_Term_Overlap_across_Biomedical_Ontologies)
+  - It links to [A Systematic Analysis of Term Reuse and Term Overlap across Biomedical_Ontologies](https://www.researchgate.net/publication/298213412_A_Systematic_Analysis_of_Term_Reuse_and_Term_Overlap_across_Biomedical_Ontologies)
    (I didn't read it all (as it seems very 'dense'!), but the final short 
    sections 5.5 and 6 seem interesting in that they allude to solutions for term
-   discovery and reuse.
+   discovery and reuse).
   - "Hogan in his thesis [33, Section 5]"
 
 - Vocabulary of Interlinked Datasets: [VoID](https://www.w3.org/TR/void/)
