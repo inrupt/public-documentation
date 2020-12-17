@@ -149,19 +149,29 @@ Annotations" W3C editor draft for
     prefix foaf: <http://xmlns.com/foaf/0.1/>
     ```
  
-- Open question on whether to include year (and possibly month) (as a simple
-form of versioning) in the namespace URI.
-  - It's a fairly common practice, especially in W3C vocabularies, for example:
+  - Although it has been a fairly common practice (especially in W3C
+    vocabularies) to include the year (and possibly month) as a simple form of
+    versioning in namespace URIs, for example:
   
     ```turtle
     prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
     ```
     
-  - ...but our preference is to **_not_** include any attempt at explicit
-  versioning, including dates or years, in the namespace URI itself (instead use
-  explicit versioning meta-data within the vocabulary itself and use status or
-  deprecation meta-data on individual terms if appropriate).
+    ...our guidance is to **_not_** include any attempt at explicit
+     versioning, including dates or years, in the namespace URI.
+    
+     An example of where this lesson has already been learned, is described in 
+     [FOAF extension and evolution](https://www.w3.org/2003/06/sw-vocab-status/note#history):
+
+     *"It long ago became impractical to update the namespace URI without causing
+     huge disruption to both producers and consumers of FOAF data. We are left
+     with the digits "0.1" in our URI. This stands as a warning to all those who
+     might embed metadata in their vocabulary identifiers."*
+    
+- Instead of attempting to version the namespace IRI, we propose using explicit
+  versioning meta-data within the vocabulary itself, including status,
+  deprecation or versioning meta-data on individual terms, if appropriate.
    
 ## Providing meta-data for your vocabulary
 
