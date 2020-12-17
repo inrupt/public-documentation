@@ -12,14 +12,20 @@ for current industry best practices in relation to RDF vocabulary design.
 Although multiple attempts have been made at producing RDF vocabulary
 guidelines (see links in the [Existing research / guidelines section](#existing-research--guidelines) below), a fundamental problem is
 that these guidelines are generally written in academic papers, or described in
-prose, and therefore not machine-readable or enforceable.
+prose, and are therefore not machine-readable and automatically enforceable.
  
 One nice consequence of Inrupt having an [Artifact Generator]() is that if a
-vocabulary is explicitly declared as being of a specific type, then our
-generator can enforce a number of rules automatically before generating
+vocabulary is explicitly declared as being of a specific type (e.g. of type
+`Inrupt-(or Solid?)-guideline-following-vocabulary`), then our generator can
+enforce a number of these guidelines automatically before generating
 source-code that contains consistent programming artifacts for the terms
-contained in an RDF vocabulary. For example, all Classes and Properties must
-provide `rdfs:label` and `rdfs:comment` values, in at least English.
+contained in that vocabulary.
+
+For example, if our guidelines stipulate that all Classes and Properties MUST
+provide `rdfs:label` and `rdfs:comment` values (and that the values must include
+at least English), then the Artifact Generator can throw an exception if 
+either of these predicates are missing for a term defined in a vocabulary marked
+explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 ## Existing research / guidelines
 
