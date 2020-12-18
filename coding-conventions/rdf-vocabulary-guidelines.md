@@ -104,7 +104,7 @@ itself uses `dcterms:`, so do we!
 Here we list the preferred namespace prefixes that we use at Inrupt for
 vocabularies whose prefix might not be immediately obvious across all our RDF
 are (if you're unsure of a prefix to use, just try and look for existing usage
-of that vocbaulary in our RDF, or ask at info@inrupt.com):
+of that vocabulary in our RDF, or ask at info@inrupt.com):
 
 ```turtle
 prefix dcterms:  <http://purl.org/dc/terms/>
@@ -395,9 +395,12 @@ the official specification.
 
   - So where possible use `schema:domainIncludes` and `schema:rangeIncludes` (see
   [Schema.org's justification](https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
-  for more details on the rationale here (and note that Dublin Core also defines
-  very similar terms: [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
-  )). 
+  for more details on the rationale here).
+    
+    Note that Dublin Core also defines very similar terms (e.g. 
+    [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
+    ), but our guidance is to use the Schema.org terms (as it's a far more
+    widely known vocabulary). 
 
 ## Publishing your vocabulary
 
