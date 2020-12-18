@@ -276,17 +276,17 @@ information.
         a owl:Ontology ;
         rdfs:isDefinedBy myvocab: ;
         owl:versionInfo [
-                dc:date "2017-06-06"^^xsd:date ;
+                dcterms:date "2017-06-06"^^xsd:date ;
                 rdfs:seeAlso <https://github.com/me/my-vocab/pull/1> ;
                 rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob372836/myvocab.ttl> ;
             ] ;
         owl:versionInfo [
-                dc:date "2019-10-26"^^xsd:date ;
+                dcterms:date "2019-10-26"^^xsd:date ;
                 rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
                 rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob232829/myvocab.ttl> ;
             ] ;
         owl:versionInfo [
-                dc:date "2020-01-02"^^xsd:date ;
+                dcterms:date "2020-01-02"^^xsd:date ;
                 rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
                 rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob989929/myvocab.ttl> ;
             ] .  
@@ -321,10 +321,10 @@ particularly if a term is intended for testing, or considered unstable.
 ### Describe who created this vocabulary
 
 - Provide a reference to who (i.e. the organisation, or person) created this
-vocabulary using the `dc:creator` property. This property is intended to have a
-URI as it's value, and so if you (or your organisation) has a WebID, then that
-would be the perfect value for this property. If you don't have a meaningful
-URI to provide here, a simple textual string is also fine.
+vocabulary using the `dcterms:creator` property. This property is intended to
+have a URI as it's value, and so if you (or your organisation) has a WebID, then
+that would be the perfect value for this property. If you don't have a
+meaningful URI to provide here, a simple textual string is also fine.
 
     ```turtle
     myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
