@@ -60,14 +60,23 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 ### Prefixes
 
-- Use the lowercase SPARQL syntax for `base` and `prefix` declarations. Justification:
-It allows easier cut-and-paste into SPARQL queries; Consistency; Readability;
-We consider RDF 1.1 Turtle parsers widely deployed (see [Turtle 1.1 Spec IRIs Note](https://www.w3.org/TR/turtle/#sec-iri).
+- Use the lowercase SPARQL syntax for `base` (if you use `base` at all, as our 
+  guidance is to avoid it **_for vocabularies_**) and `prefix` declarations (as
+  opposed to uppercase, or the older `@BASE`, `@PREFIX` syntax (see the NOTE in
+  [Turtle 1.1 Spec IRIs Note](https://www.w3.org/TR/turtle/#sec-iri))).
+  
+  Justification:
+    - We consider RDF 1.1 Turtle parsers to be widely deployed now, so choosing
+    lowercase and the non-@-prefixed syntax shouldn't cause any problems.
+    - It allows easier cut-and-paste into SPARQL queries. 
+    - Readability (i.e. lowercase just tends to scream less).
+    - Consistency (i.e. just pick one, and stick with it - we've chosen lowercase).
+
 
 - Use a short prefix for your vocabulary, but don't get caught up in
 trying to make the prefix **_too_** short. For example:
     ```turtle
-    prefix myVocab: <http://myCompany.com/ns/example/myVocab#>
+    prefix my-vocab: <http://myCompany.com/ns/example/myVocab#>
     
     # Long prefixes are fine too if justified
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
@@ -191,7 +200,7 @@ the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
 vocabulary, for example:
 
     ```turtle
-    myvocab: a owl:Ontology .
+    my-vocab: a owl:Ontology .
     ```
 
 - Optionally, also type your vocabulary as an Artifact Generator-aware
@@ -201,7 +210,7 @@ for example:
     ```turtle
     # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
     # don't provide the full namespace URI at the moment!
-    myvocab a artifact-generator:Ontology .
+    my-vocab a artifact-generator:Ontology .
     ``` 
 
 ### Describe the vocabulary
@@ -211,7 +220,7 @@ for example:
 for example:
 
     ```turtle
-    myvocab: a owl:Ontology ;
+    my-vocab: a owl:Ontology ;
       dcterms:title "My guidelines vocab"@en ;
       dcterms:title "Mon vocabulaire des recommandations"@fr ;
       dcterms:description "A longer description of my guidelines vocab"@en ;
@@ -222,7 +231,7 @@ for example:
 specifications that might relate to this vocabulary.
 
     ```turtle
-    myvocab: a owl:Ontology ;
+    my-vocab: a owl:Ontology ;
       dcterms:title "My Solid-related vocab"@en ;
       rdfs:seeAlso <https://solid.github.io/specification/> .
     ```
@@ -272,9 +281,9 @@ information.
   - A very interesting idea is to instead use the `owl:versionInfo` predicate to
   reference richer meta-data for each vocbaulary change, e.g:
     ```turtle
-    myvocab:
+    my-vocab:
         a owl:Ontology ;
-        rdfs:isDefinedBy myvocab: ;
+        rdfs:isDefinedBy my-vocab: ;
         owl:versionInfo [
                 dcterms:date "2017-06-06"^^xsd:date ;
                 rdfs:seeAlso <https://github.com/me/my-vocab/pull/1> ;
@@ -292,7 +301,7 @@ information.
             ] .  
     ```
   This example uses blank nodes, meaning we can't easily reference each
-  individual version change, so using acutal (relative) IRIs instead would
+  individual version change, so using actual (relative) IRIs instead would
   probably be preferable.
   - As a further extension, we could look at using the [PROV-O](https://www.w3.org/TR/prov-o/)
   ontology to model these versioning changes even more richly and explicitly.
@@ -327,17 +336,17 @@ that would be the perfect value for this property. If you don't have a
 meaningful URI to provide here, a simple textual string is also fine.
 
     ```turtle
-    myVocab dcterms:creator <https://inrupt.com/profile/card/#us> .
+    my-vocab dcterms:creator <https://inrupt.com/profile/card/#us> .
     ```  
 
 - Also, feel free to include contributors using the `dcterms:contributor` 
 predicate (using individuals WebID's if possible):
 
     ```turtle
-    myVocab dcterms:contributor 
+    my-vocab dcterms:contributor 
       <https://inrupt.com/employee/12345/profile/card/#me> ,
       <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
-      "friendly-volunteer@gmail.com" .
+      "friendly-volunteer@example.com" .
     ```  
 
 ## Terms (the Classes, Properties, Individuals and Constants)
@@ -364,18 +373,15 @@ issued after the official issue date of the vocabulary itself.
 vocabulary term each time you update any meta-data for that term.
 
     ```turtle
-    myvocab: a owl:Ontology ;
-      :
+    my-vocab: a owl:Ontology ;
       dcterms:issued "2010-01-01"^^xsd:date ; 
       dcterms:modified "2015-01-01"^^xsd:date . 
     
-    myvocab:prop1 a rdf:Property ;
-      :
+    my-vocab:prop1 a rdf:Property ;
       rdfs:comment "My first property - issued in original vocabulary."@en ;
       dcterms:modified "2015-01-01"^^xsd:date . 
     
-    myvocab:prop2 a rdf:Property ;
-      :
+    my-vocab:prop2 a rdf:Property ;
       rdfs:comment "My new property - issued after the original vocabulary."@en ;
       dcterms:issued "2020-10-02"^^xsd:date . 
     ``` 
