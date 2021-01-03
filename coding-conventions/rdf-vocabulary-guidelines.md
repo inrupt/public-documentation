@@ -9,12 +9,20 @@ for current industry best practices in relation to RDF vocabulary design.
 
 ## The Inrupt Artifact Generator
 
-Although multiple attempts have been made at producing RDF vocabulary
+**Note**: The Inrupt Artifact Generator is still an internal, closed-source
+project within Inrupt at the moment. There are still a number of important
+features we think we need to implement before releasing it as open-source, and
+we also need to produce detailed documentation to explain its use and the very
+many configuration options. We also have no planned date yet for making it
+open-source, but it's certainly our intention to make this tool generally
+available when we consider it ready.
+
+So although multiple attempts have been made at producing RDF vocabulary
 guidelines (see links in the [Existing research / guidelines section](#existing-research--guidelines) below), a fundamental problem is
 that these guidelines are generally written in academic papers, or described in
 prose, and are therefore not machine-readable and automatically enforceable.
  
-One nice consequence of Inrupt having an [Artifact Generator]() is that if a
+One nice consequence of Inrupt having an Artifact Generator is that if a
 vocabulary is explicitly declared as being of a specific type (e.g. of type
 `Inrupt-(or Solid?)-guideline-following-vocabulary`), then our generator can
 enforce a number of these guidelines automatically before generating
