@@ -2,7 +2,7 @@
 
 ## Overview
 The goal of this documentation is to suggest a cohesive
-set of rules for anyone wishing to create, extend and/or maintain RDF
+set of guidelines for anyone wishing to create, extend and/or maintain RDF
 vocabularies. It borrows extensively from existing (and continually evolving)
 research in this space, but aims to provide a one-stop-shop for anyone looking
 for current industry best practices in relation to RDF vocabulary design.
@@ -65,6 +65,9 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 ### Serialization
 
 - Provide your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
+  - Justification:
+    - Turtle is widely accepted as being the most human-readable RDF
+      serialization.
 
 ### Prefixes
 
@@ -73,12 +76,13 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
   opposed to uppercase, or the older `@BASE`, `@PREFIX` syntax (see the NOTE in
   [Turtle 1.1 Spec IRIs Note](https://www.w3.org/TR/turtle/#sec-iri))).
   
-  Justification:
+  - Justification:
     - We consider RDF 1.1 Turtle parsers to be widely deployed now, so choosing
     lowercase and the non-@-prefixed syntax shouldn't cause any problems.
     - It allows easier cut-and-paste into SPARQL queries. 
     - Readability (i.e. lowercase just tends to scream less).
-    - Consistency (i.e. just pick one, and stick with it - we've chosen lowercase).
+    - Consistency (i.e. just pick one, and stick with it - we've chosen
+      lowercase).
 
 
 - Use a short prefix for your vocabulary, but don't get caught up in
@@ -109,19 +113,22 @@ themselves, allowing them to avoid prefix name clashes.
 - Consider registering your prefix at [prefix.cc](http://prefix.cc/) once you
 think your vocabulary's chosen namespace URI will remain stable.
 
-#### Recommended prefixes
+#### Recommended prefixes for common RDF vocabularies
 
-- Use preferred namespace prefixes. Justification: Consistency; Readability.
-For example: Anyone can define whatever prefix they want when using
-vocabularies, so the Dublin Core Terms vocabulary is often used with different
+- Use preferred namespace prefixes. 
+    - Justification: 
+      - Consistency; Readability.
+
+Note: Anyone can define whatever prefix they want when using vocabularies, so
+for instance the Dublin Core Terms vocabulary is often used with different
 prefixes, such as `dc:`, or `dct:`, or `dcterms:`, which can be confusing. Since
 the [Turtle serialization of the vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl)
 itself uses `dcterms:`, so do we!
 
-Here we list the preferred namespace prefixes that we use at Inrupt for
-vocabularies whose prefix might not be immediately obvious across all our RDF
-are (if you're unsure of a prefix to use, just try and look for existing usage
-of that vocabulary in our RDF, or ask at info@inrupt.com):
+Below we list the preferred namespace prefixes that we use at Inrupt across all
+our RDF for vocabularies whose prefix might not be immediately obvious (if
+you're unsure of a prefix to use, try and look for existing usage of that
+vocabulary in our RDF, or just ask at info@inrupt.com):
 
 ```turtle
 prefix dcterms:  <http://purl.org/dc/terms/>
@@ -194,7 +201,8 @@ Annotations" W3C editor draft for
     
 - Instead of attempting to version the namespace IRI, we propose using explicit
   versioning meta-data within the vocabulary itself, including status,
-  deprecation or versioning meta-data on individual terms, if appropriate.
+  deprecation or versioning meta-data on individual terms, if appropriate. For
+  more details, see the section [Versioning](#versioning) below
    
 ## Providing meta-data for your vocabulary
 
@@ -223,9 +231,9 @@ for example:
 
 ### Describe the vocabulary
 
-- Provide basic descriptions of your vocabulary using `dcterms:title` and
-`dcterms:description`, and use explicit language tags to denote the language,
-for example:
+- Provide basic descriptions of your vocabulary, using `dcterms:title` for a
+  short-form description, and `dcterms:description` for a longer, more detailed
+  description. Use explicit language tags to denote the language, for example:
 
     ```turtle
     my-vocab: a owl:Ontology ;
@@ -309,8 +317,8 @@ information.
             ] .  
     ```
   This example uses blank nodes, meaning we can't easily reference each
-  individual version change, so using actual (relative) IRIs instead would
-  probably be preferable.
+  individual version change, so using actual (relative) IRIs instead would be
+  preferable.
   - As a further extension, we could look at using the [PROV-O](https://www.w3.org/TR/prov-o/)
   ontology to model these versioning changes even more richly and explicitly.
 
@@ -358,6 +366,20 @@ predicate (using individuals WebID's if possible):
     ```  
 
 ## Terms (the Classes, Properties, Individuals and Constants)
+
+### Naming conventions for Classes and Properties
+
+A very widely accepted naming convention in RDF is to use uppercase first
+letters when naming Classes, and lowercase first letters for properties, but we
+extend this slightly to include the following naming guidelines: 
+
+ - Classes begin with a capital letter and are always singular, e.g.
+   `skos:Concept`.
+ - Properties begin with a lowercase letter, e.g., `rdfs:label`.
+ - Object properties should be verbs, e.g., `org:hasSite`.
+ - Data type properties should be nouns, e.g., `dcterms:description`.
+ - Use camel case if a term has more than one word, e.g., 
+   `foaf:isPrimaryTopicOf`.
 
 ### Use `rdfs:isDefinedBy`
 
