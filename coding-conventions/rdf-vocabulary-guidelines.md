@@ -23,7 +23,7 @@ that these guidelines are generally written in academic papers, or described in
 prose, and are therefore not machine-readable and automatically enforceable.
  
 One nice consequence of Inrupt having an Artifact Generator is that if a
-vocabulary is explicitly declared as being of a specific type (e.g. of type
+vocabulary is explicitly declared as being of a specific type (e.g., of type
 `Inrupt-(or Solid?)-guideline-following-vocabulary`), then our generator can
 enforce a number of these guidelines automatically before generating
 source-code that contains consistent programming artifacts for the terms
@@ -80,8 +80,8 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
     - We consider RDF 1.1 Turtle parsers to be widely deployed now, so choosing
     lowercase and the non-@-prefixed syntax shouldn't cause any problems.
     - It allows easier cut-and-paste into SPARQL queries. 
-    - Readability (i.e. lowercase just tends to scream less).
-    - Consistency (i.e. just pick one, and stick with it - we've chosen
+    - Readability (i.e., lowercase tends to 'scream' less).
+    - Consistency (i.e., just pick one, and stick with it - we've chosen
       lowercase).
 
 
@@ -96,8 +96,8 @@ trying to make the prefix **_too_** short. For example:
 
 - If your prefix is made up of multiple words or acronyms (such as the
 `fibo-loan-loan-mod` example above), use hypens and not underscores. There is no
-particular reason for this preference (i.e. both are fine), it's just to
-maintain consistency across all of our vocabs.
+particular reason for this preference (i.e., either would be fine), it's just to
+pick one to maintain consistency across all of our vocabs.
 
 - Try to avoid existing commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
 to check if your preferred prefix is already in common use; but just be aware
@@ -153,7 +153,7 @@ information on the distinction, see the W3C guidelines in
       substantially, or might be broken up into sub-vocabularies.
   - Important to note: a hash namespace means the entire vocab will be retrieved
   in one GET request, whereas a slash namespace allows each individual term to
-  be dereferencable individually (e.g. https://schema.org/Person)
+  be dereferencable individually (e.g., `https://schema.org/Person`)
   - Generally speaking, a slash namespace is more future-proof, as new levels of
   hierarchy can be added later, whereas a hash namespace can only have a single
   (root) level of hierarchy.  
@@ -161,8 +161,8 @@ information on the distinction, see the W3C guidelines in
 - Consider using a persistent URI to allow the links and references defined in
 your vocabulary to outlive your current organisation, or personally owned
 domain. For example:
-  - [PURL](https://purl.org/), but it seems the Internet Archive are no longer supporting it (i.e.
-   they were not responding to update requests in 2019).
+  - [PURL](https://purl.org/), but it seems the Internet Archive are no longer
+   supporting it (i.e., they were not responding to update requests in 2019).
   - The [w3id.org project](https://w3id.org/), but as a GitHub repo can it
    continue to scale indefinitely...?!
   - Do you know of any other services or projects? Suggestions and/or PRs 
@@ -345,7 +345,7 @@ particularly if a term is intended for testing, or considered unstable.
   
 ### Describe who created this vocabulary
 
-- Provide a reference to who (i.e. the organisation, or person) created this
+- Provide a reference to who (i.e., the organisation, or person) created this
 vocabulary using the `dcterms:creator` property. This property is intended to
 have a URI as it's value, and so if you (or your organisation) has a WebID, then
 that would be the perfect value for this property. If you don't have a
@@ -383,6 +383,11 @@ extend this slightly to include the following naming guidelines:
  - Data type properties should be nouns, e.g., `dcterms:description`.
  - Use camel case if a term has more than one word, e.g., 
    `foaf:isPrimaryTopicOf`.
+ - Also camel case acronyms, e.g., the class of 'XML HTTP requests' would be
+   `XmlHttpRequest`, and the (rather nightmarish!) property of 'supporting IPv6
+   on iOS' would be `supportsIpv6OnIos`.
+   - This topic alone could ignite endless debate, but our guideline is loosely
+     based on the [Google naming convention](https://google.github.io/styleguide/jsguide.html#naming-camel-case-defined).
    
 ### Use `rdfs:isDefinedBy`
 
@@ -394,7 +399,7 @@ defining that term.
 #### Use `dcterms:issued` and `dcterms:modified`
 
 - Use `dcterms:issued` (with the value typed as `xsd:date`) for your vocabulary
-to represent its official issue date (i.e. original date of release).
+to represent its official issue date (i.e., original date of release).
 
 - Update `dcterms:modified` (with the value typed as `xsd:date`) for your
 vocabulary each time the vocabulary is modified.
@@ -436,7 +441,7 @@ the official specification.
   [Schema.org's justification](https://www.w3.org/wiki/WebSchemas/SchemaDotOrgMetaSchema)
   for more details on the rationale here).
     
-    Note that Dublin Core also defines very similar terms (e.g. 
+    Note that Dublin Core also defines very similar terms (e.g., 
     [DC 'rangeIncludes'](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/rangeIncludes)
     ), but our guidance is to use the Schema.org terms (as it's a far more
     widely known vocabulary). 
@@ -445,7 +450,7 @@ the official specification.
 
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
   - Definitely support Content negotiation if at all possible, and support as
-  many RDF seralizations as possible (i.e. just use any common RDF library to
+  many RDF seralizations as possible (i.e., just use any common RDF library to
   perform the appropriate serializations dynamically at runtime).
 
 ## General style guidelines
@@ -454,6 +459,6 @@ the official specification.
 in the remainder of the vocabulary. 
   - This is just a general guideline when working with RDF in general, as
     relative IRIs should generally be avoided **_in vocabularies_**, since they
-    make it harder to process the vocabulary in isolation (i.e. any processor
+    make it harder to process the vocabulary in isolation (i.e., any processor
     will need to provide a base IRI to convert any relative IRIs into absolute
     IRIs, as mandated by RDF itself). 
