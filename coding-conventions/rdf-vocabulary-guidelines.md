@@ -373,6 +373,9 @@ A very widely accepted naming convention in RDF is to use uppercase first
 letters when naming Classes, and lowercase first letters for properties, but we
 extend this slightly to include the following naming guidelines: 
 
+ - Most identifiers in vocabularies are singular nouns, including Categories.
+   So, the category of all people is called `Person` (e.g., `schema:Person`) and
+   of all organizations is called `Organization` (e.g., `schema:Organization`)
  - Classes begin with a capital letter and are always singular, e.g.
    `skos:Concept`.
  - Properties begin with a lowercase letter, e.g., `rdfs:label`.
@@ -380,7 +383,7 @@ extend this slightly to include the following naming guidelines:
  - Data type properties should be nouns, e.g., `dcterms:description`.
  - Use camel case if a term has more than one word, e.g., 
    `foaf:isPrimaryTopicOf`.
-
+   
 ### Use `rdfs:isDefinedBy`
 
 - Each term in your vocabulary should link back to the vocabulary itself using
@@ -448,10 +451,9 @@ the official specification.
 ## General style guidelines
 
 - Avoid using the `base` directive, as it prevents the use of any relative IRIs
-in the remainder of the vocabulary.
-
-This is just a general guideline when working with RDF in general, as relative
-IRIs should generally be avoided **_in vocabularies_**, since they make it harder
-to process the vocabulary in isolation (i.e. any processor will need to provide
-a base IRI to convert any relative IRIs into absolute IRIs, as mandated by RDF
-itself). 
+in the remainder of the vocabulary. 
+  - This is just a general guideline when working with RDF in general, as
+    relative IRIs should generally be avoided **_in vocabularies_**, since they
+    make it harder to process the vocabulary in isolation (i.e. any processor
+    will need to provide a base IRI to convert any relative IRIs into absolute
+    IRIs, as mandated by RDF itself). 
