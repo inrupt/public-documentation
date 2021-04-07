@@ -64,10 +64,43 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 ### Serialization
 
-- Provide your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
+- Write your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
   - Justification:
     - Turtle is widely accepted as being the most human-readable RDF
       serialization.
+
+### Internationalization
+
+- As a general rule, always provide explicit language tags for any textual information you 
+  provide in your vocabulary that is intended for humans to read, and which makes sense to be 
+  'translatable' (e.g., nicknames are generally not expected to be translatable into other 
+  languages (so providing a language tag would not be expected), but someone's first name might be 
+  (e.g., "Patrick" in English can be written in Irish as "Pádraig" (or "Pádraic", or "Páraic"!)).
+  
+  -  For instance, all Classes and Predicates in a vocabulary should provide `rdfs:label` and
+     `rdfs:comment` values to provide short human-readable labels and longer human-readable
+     descriptions of those terms. Adding explicit language tags makes it explicitly clear what
+     human language those descriptions are in, and doing so also provides simple guidance and 
+     slight encouragement to also provide those same descriptions in other languages too. 
+  
+        ```turtle
+        pet:PetRock a rdf:class ;
+          rdfs:label "Pet Rock"@en ;
+          rdfs:label "Pierre de compagnie (Pet Rock)"@fr ;
+          rdfs:comment "Pet Rock is a collectible toy made in 1975 by advertising executive Gary Dahl"@en ;
+          rdfs:comment "Pet Rock est un jouet de collection fabriqué en 1975 par le directeur de la publicité Gary Dahl"@fr .
+        ```
+
+- Explicitly provided language tags on textual information can be used by libraries to 
+  automatically provide internationalized UI elements, or error messages, or any human-readable
+  information. For example, the Inrupt Artifact Generator can generate source code from RDF vocabs 
+  that provides easy and direct access to these translations:
+  
+    ```javascript
+    import { PET } from "@inrupt/example-pet-vocab";
+    
+    console.log(PET.PetRock.asLanguage("fr").comment);
+    ```
 
 ### Prefixes
 
@@ -343,6 +376,12 @@ particularly if a term is intended for testing, or considered unstable.
     <:ExperimentalClass> status:term_status "unstable" .
     ```
   
+- Kurt Cagle provides an interesting example of versioning in this
+  [article](https://www.bbntimes.com/science/torn-between-uuids-and-friendly-iris-use-both) from 
+  Feb 2021. Here he uses UUID-based subject IRIs to refer to immutable versions of entities, and 
+  simple `owl:sameAs` triples to refer to a fixed, friendly-IRI to represent the unchanging 
+  conceptual entity. It's an interesting use of mixing human-friendly and UUID-based IRIs.  
+
 ### Describe who created this vocabulary
 
 - Provide a reference to who (i.e., the organisation, or person) created this
