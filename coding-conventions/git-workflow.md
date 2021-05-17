@@ -38,4 +38,4 @@ The example below shows how you could manage multiple tasks and pull requests in
 | And so on... | `git checkout main`<br>`git pull` ||
 
 ## Other thoughts
-* Should we promote `git switch <branch>` and `git switch -c <branch>` instead of `git checkout <branch>` and `git checkout -b <branch>`
+* Should we promote `git switch <branch>` and `git switch -c <branch>` instead of `git checkout <branch>` and `git checkout -b <branch>`?
