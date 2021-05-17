@@ -15,7 +15,7 @@ The example below shows how you could manage multiple tasks and pull requests in
 | Commit changes | `git commit -am"Work in progress on task 2"` ||
 | --- | --- | --- |
 | **Reviewer suggests changes in PR#1** | `git checkout branch1` ||
-| **Q:** What if there are changes on master to incorporate? Do you do another rebase but this is now a public branch so how do you then push? || 
+| **Q:** What if there are changes on main to incorporate? Do you do another rebase but this is now a public branch so how do you then push? || 
 | Commit changes | `git commit -am"Updated task 1"` ||
 | Update PR#1 |`git push` ||
 | --- | --- | --- |
