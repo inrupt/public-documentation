@@ -25,22 +25,6 @@
   - Other graph shapes might indicate an architectural problem.
 - One index file with non-default ES6 exports exposes the public API.
 
-## Coding style
-
-### Defensive programming
-
-- Validate your assumptions (at the moment you make them):
-  - For typing, this is possible through TypeScript.
-  - Methods throw an error when called with invalid arguments.
-
-### Asynchronicity
-
-- Prefer async/await over explicit Promises, and prefer those over
-  callbacks.
-  - Promise wrappers for native Node functions exist.
-- Use callbacks if needed for performance reasons.
-  - Especially for streams.
-
 ## Testing
 
 - Ensure all code is tested with unit tests, or has a comment explaining why there's no test and is
@@ -145,8 +129,25 @@ Some other guiding questions are:
     - Is immutability needed for certain algorithms (such as diffing)?
     - Is mutability preferred for (measured!) performance issues?
 
-### Guidance for object orientation
+### Guidance for functions (and methods)
+- **Pack optional parameters** in an optional `option` objects as a last parameter.
+  - This avoids breaking the API when more options are added
+    and removed the need to pass `undefined` for unused options.
+- **Use at most 3–4 parameters**.
+    - If more are needed,
+      consider grouping related ones together in a data object;
+      the `options` object could be a match as well.
+- Design for [currying](https://wiki.haskell.org/Currying):
+  put the **parameters least likely to change first**.
+- **Prefer `async`/`await`** over explicit `Promise`,
+  and prefer those over callbacks.
+  - Callbacks are acceptable for event listeners
+    and for (measured!) performance reasons.
+- **Validate assumptions** at the moment you make them.
+  - Maximally rely on compile-time TypeScript checks.
+  - Throw a `TypeError` when called with invalid arguments.
 
+### Guidance for objects
 - Organize code as **classes**.
   - Since your class represents an instantiatable thing, name it with a noun.
     E.g., `Command` and `CommandExecutor`, *not* `executeCommand`.
@@ -187,43 +188,3 @@ Some other guiding questions are:
 - Write any **exported executable scripts** as minimal wrappers around a class.
   - Any command-line script instantiates a class with the right arguments.
   - That class can be independently unit-tested (the script much less so).
-
-### API guidance
-
-#### Use an `options` parameter for optional parameters
-
-When a function has optional parameters,
-make it optionally accept an object containing those parameters.
-
-This avoids breaking the API when more options are added
-and removed the need to pass `undefined` for unused options.
-
-For example, instead of:
-
-```typescript
-const element = getElement('Do not do this', undefined, 'This is visible on hover');
-function getElement(contents: string, target?: string, title? :string): HTMLElement {
-```
-
-prefer:
-
-```typescript
-const element = getElement('Try this instead', { title: 'This is visible on hover' });
-function getElement(contents: string, options?: Partial<{ target: string; title: string; }>): HTMLElement {
-```
-
-#### Maximize reliance on compile-time checking
-
-Try to make sure that invalid invocations are not allowed by your type signatures.
-
-For example, instead of
-
-```typescript
-function display(personOrCompany: { type: 'person' | 'company', birthDate?: Date }) {
-```
-
-prefer:
-
-```typescript
-function display(personOrCompany: { type: 'person', name: string } | { type: 'company' }) {
-```
