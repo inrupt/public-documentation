@@ -188,86 +188,42 @@ Some other guiding questions are:
   - Any command-line script instantiates a class with the right arguments.
   - That class can be independently unit-tested (the script much less so).
 
-### API design
+### API guidance
 
 #### Use an `options` parameter for optional parameters
 
-When a function has optional parameters, make it optionally accept an object containing those parameters.
+When a function has optional parameters,
+make it optionally accept an object containing those parameters.
 
-This allows you to avoid having to change the API later when you add more options, it makes it clear to callers what 'boolean' options do, and ensures that callers do not have to pass `undefined` for options that they do not want to override.
+This avoids breaking the API when more options are added
+and removed the need to pass `undefined` for unused options.
 
-Instead of e.g.
+For example, instead of:
 
-```javascript
-function getElement(contents: string, target?: string, title? :string): HTMLElement {
-  const element = document.createElement(target ? 'a' : 'span');
-  element.textContent = contents;
-  if (target) {
-    element.setAttribute('href', target);
-  }
-  if (title) {
-    element.setAttribute('title', title);
-  }
-  return element;
-}
-
+```typescript
 const element = getElement('Do not do this', undefined, 'This is visible on hover');
+function getElement(contents: string, target?: string, title? :string): HTMLElement {
 ```
 
-do something like
+prefer:
 
-```javascript
-function getElement(contents: string, options?: Partial<{ target: string; title: string; }>): HTMLElement {
-  const element = document.createElement(options?.target ? 'a' : 'span');
-  element.textContent = contents;
-  if (options?.target) {
-    element.setAttribute('href', options.target);
-  }
-  if (options?.title) {
-    element.setAttribute('title', options.title);
-  }
-  return element;
-}
-
+```typescript
 const element = getElement('Try this instead', { title: 'This is visible on hover' });
+function getElement(contents: string, options?: Partial<{ target: string; title: string; }>): HTMLElement {
 ```
 
-#### Enable compile-time errors if possible
+#### Maximize reliance on compile-time checking
 
 Try to make sure that invalid invocations are not allowed by your type signatures.
 
-Because developers using TypeScript will get a warning if they call your code incorrectly at build
-time, rather than at runtime.
+For example, instead of
 
-Instead of:
-
-```javascript
-function showTypeAndName(personOrCompany: { type: 'person' | 'company', name?: string }) {
-  console.log(personOrCompany.type === 'person' ? 'This is a person' : 'This is a company');
-
-  if (personOrCompany.type === 'person') {
-    if (!personOrCompany.name) {
-        throw new Error('A person should have a name.');
-    }
-
-    console.log('This person is called', personOrCompany.name);
-  }
-}
+```typescript
+function display(personOrCompany: { type: 'person' | 'company', birthDate?: Date }) {
 ```
 
-we prefer:
+prefer:
 
-```javascript
-function showTypeAndName(personOrCompany: { type: 'person', name: string } | { type: 'company' }) {
-  console.log(personOrCompany.type === 'person' ? 'This is a person' : 'This is a company');
-
-  if (personOrCompany.type === 'person') {
-    console.log('This person is called', personOrCompany.name);
-  }
-}
+```typescript
+function display(personOrCompany: { type: 'person', name: string } | { type: 'company' }) {
 ```
-
-(This is somewhat contrived, but the point is that if you notice you\'re writing code that handles
-runtime errors, see if you can change the code so that there is no valid code path that leads to
-that error - at least when using TypeScript. You might still want to include the runtime check for
-library consumers not using an editor or IDE that supports TypeScript.)
