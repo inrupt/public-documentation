@@ -1,79 +1,6 @@
 # JavaScript-Specific Guidelines
 
-## Browser Support
-
-- Test and target compilation for the latest two versions of the most popular browsers. The current list is:
-  - Desktop:
-    -  Chrome / macOS, Ubuntu, Windows
-    -  FireFox / macOS, Ubuntu, Windows
-    -  Safari  / macOS
-    -  Edge (Chromium) / Windows
-  - Mobile:
-    -  iOS / Safari
-    -  Android / Chrome
-    -  Android / Samsung Internet
--  For applications, consider multiple screen sizes when implementing the UI:
-    - Small: 360x640
-    - Medium: 768x1024
-    - Large: 1366x768
-    - X-Large: 1600x900
-
-## Organize code conceptually in packages
-
-- Use a folder hierarchy to represent packages of related code.
-- Dependencies are usually tree-shaped.
-  - Other graph shapes might indicate an architectural problem.
-- One index file with non-default ES6 exports exposes the public API.
-
-## Testing
-
-- Ensure all code is tested with unit tests, or has a comment explaining why there's no test and is
-  [skipped for the coverage report](https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md)
-  - Classes have corresponding unit tests.
-  - Replace dependencies by mocks with validated assumptions.
-  - High coverage is important, but not a goal in itself.
-  - Ensure not only that the code is used, but that its effects are tested.
-  - Write integration tests for groups of classes or functions.
-  - Since each test has one specific responsibility, integration tests check how those responsibilities
-    interact. 
-
-## Tools and Quality Practices
-
-1. Add an `.nvmrc` file to your repository, and [set up your shell](https://github.com/nvm-sh/nvm#deeper-shell-integration)
-  to read it and switch to the correct Node/npm version automatically.
-2. Use Node 12.
-3. Use npm.
-4. Use TypeScript for larger projects; ES6 JavaScript (through Babel) is acceptable for apps.
-  1. Put source code in the `src` folder.
-  2. Put transpiled code in the `dist` folder.
-  3. Add non-default export to an index file, ensuring that tree-shaking is possible with the `sideEffects` flag in `package.json`.
-5. Annotate everything in the API that\'s intended for internal use, but is externally accessible, as `@internal` in its TSDoc, and
-  [prevent TypeScript from emitting their declarations](https://www.typescriptlang.org/v2/en/tsconfig#stripInternal)
-6. Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use
-  it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some
-  native methods return `any`, like `JSON.parse` - cast those to a known type as soon as possible, preferably
-  with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards).
-7. Write tests with Jest.
-  1. Put tests next to source files. In libraries, this is typically done by having a `foo.ts` and `foo.test.ts`
-    file; in apps, this is typically done by
-    using folders (`foo/index.jsx`, `foo/index.test.jsx`, `foo/styles.js`).
-8. Use ESLint.
-  1. On all code, including tests.
-  2. Use the [Inrupt standard eslint configs](https://github.com/inrupt/javascript-style-configs).
-9. Use Prettier on all code, including tests. (This will be done by the linter.)
-10. Collect code coverage statistics with Jest.
-  1. Strive for 100% branch coverage.
-  2. Coverage does not tell the full story; for complex projects, consider TestCafe as well.
-11. Set up commit hooks with Husky to lint, compile, and test before pushing.
-12. Set up GitHub actions to run on Node 12 and LTS.
-13. One repository is one npm module by default.
-  1. If more complex reuse becomes a necessity, consult with others before converting to a multi-package repo with Lerna.
-14. When building applications, use the Next.js framework. For documenting components, use Storybook. For libraries, use rollup.
-  1. Generate minified and non-minified versions.
-  2. Ensure that all generated versions export a mapping file.
-15. When including logging, use [loglevel](https://www.npmjs.com/package/loglevel).
-
-## Library and API design
+## Library and API Design
 JavaScript is a multi-paradigm language that supports
 functional and object-oriented programming.
 Within those paradigms, several degrees of freedom exist;
@@ -129,7 +56,7 @@ Some other guiding questions are:
     - Is immutability needed for certain algorithms (such as diffing)?
     - Is mutability preferred for (measured!) performance issues?
 
-### Guidance for functions (and methods)
+### Guidance for Functions (and Methods)
 - **Pack optional parameters** in an optional `option` objects as a last parameter.
   - This avoids breaking the API when more options are added
     and removed the need to pass `undefined` for unused options.
@@ -147,7 +74,7 @@ Some other guiding questions are:
   - Maximally rely on compile-time TypeScript checks.
   - Throw a `TypeError` when called with invalid arguments.
 
-### Guidance for objects
+### Guidance for Objects
 - Organize code as **classes**.
   - Since your class represents an instantiatable thing, name it with a noun.
     E.g., `Command` and `CommandExecutor`, *not* `executeCommand`.
@@ -188,3 +115,72 @@ Some other guiding questions are:
 - Write any **exported executable scripts** as minimal wrappers around a class.
   - Any command-line script instantiates a class with the right arguments.
   - That class can be independently unit-tested (the script much less so).
+
+## Code Organization
+- Use a folder hierarchy to represent packages of related code.
+- Dependencies are usually tree-shaped.
+  - Other graph shapes might indicate an architectural problem.
+- One index file with non-default ES6 exports exposes the public API.
+
+## Testing
+- Ensure all code is tested with unit tests, or has a comment explaining why there is no test and is
+  [skipped for the coverage report](https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md)
+  - Classes have corresponding unit tests.
+  - Replace dependencies by mocks with validated assumptions.
+  - High coverage is important, but not a goal in itself.
+  - Ensure not only that the code is used, but that its effects are tested.
+  - Write integration tests for groups of classes or functions.
+  - Since each test has one specific responsibility, integration tests check how those responsibilities
+    interact. 
+
+## Repository Setup
+1. Add an `.nvmrc` file to your repository, and [set up your shell](https://github.com/nvm-sh/nvm#deeper-shell-integration)
+  to read it and switch to the correct Node/npm version automatically.
+2. Use Node 12.
+3. Use npm.
+4. Use TypeScript for larger projects; ES6 JavaScript (through Babel) is acceptable for apps.
+  1. Put source code in the `src` folder.
+  2. Put transpiled code in the `dist` folder.
+  3. Add non-default export to an index file, ensuring that tree-shaking is possible with the `sideEffects` flag in `package.json`.
+5. Annotate everything in the API that is intended for internal use, but is externally accessible, as `@internal` in its TSDoc, and
+  [prevent TypeScript from emitting their declarations](https://www.typescriptlang.org/v2/en/tsconfig#stripInternal)
+6. Only use the `any` type as a last resort - which in practice basically means *never*. If you *do* use
+  it, accompany it with a comment explaining why you chose to use it anyway. Keep in mind that some
+  native methods return `any`, like `JSON.parse` - cast those to a known type as soon as possible, preferably
+  with a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards).
+7. Write tests with Jest.
+  1. Put tests next to source files. In libraries, this is typically done by having a `foo.ts` and `foo.test.ts`
+    file; in apps, this is typically done by
+    using folders (`foo/index.jsx`, `foo/index.test.jsx`, `foo/styles.js`).
+8. Use ESLint.
+  1. On all code, including tests.
+  2. Use the [Inrupt standard eslint configs](https://github.com/inrupt/javascript-style-configs).
+9. Use Prettier on all code, including tests. (This will be done by the linter.)
+10. Collect code coverage statistics with Jest.
+  1. Strive for 100% branch coverage.
+  2. Coverage does not tell the full story; for complex projects, consider TestCafe as well.
+11. Set up commit hooks with Husky to lint, compile, and test before pushing.
+12. Set up GitHub actions to run on Node 12 and LTS.
+13. One repository is one npm module by default.
+  1. If more complex reuse becomes a necessity, consult with others before converting to a multi-package repo with Lerna.
+14. When building applications, use the Next.js framework. For documenting components, use Storybook. For libraries, use rollup.
+  1. Generate minified and non-minified versions.
+  2. Ensure that all generated versions export a mapping file.
+15. When including logging, use [loglevel](https://www.npmjs.com/package/loglevel).
+
+## Browser Support
+- Test and target compilation for the latest two versions of the most popular browsers. The current list is:
+  - Desktop:
+    -  Chrome / macOS, Ubuntu, Windows
+    -  FireFox / macOS, Ubuntu, Windows
+    -  Safari  / macOS
+    -  Edge (Chromium) / Windows
+  - Mobile:
+    -  iOS / Safari
+    -  Android / Chrome
+    -  Android / Samsung Internet
+-  For applications, consider multiple screen sizes when implementing the UI:
+    - Small: 360x640
+    - Medium: 768x1024
+    - Large: 1366x768
+    - X-Large: 1600x900
