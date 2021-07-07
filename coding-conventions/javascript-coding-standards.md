@@ -103,59 +103,12 @@ whereas others (e.g. Angular, Sequelize) lean more strongly on OOP principles.
   [here](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)
   (beware: this is just a tiny part of a much broader discussion within the Vue community!).
 
-### Degree of encapsulation
-
-By making sure that changes in one part of the code do not affect other parts of the code, as
-[pure functions](https://en.wikipedia.org/wiki/Pure_function) do, it\'s generally easier for
-people to modify that code without needing to be familiar with the broader codebase.
-Classes also provide conceptual encapsulation, but just at a coarser, less fine-grained level
-(i.e. by encapsulating multiple methods and multiple pieces of state within a single Class).
-So the overall principle here is that not having to keep the entire codebase in mind lowers the
-cognitive load. And even if you are familiar with the entire codebase, encapsulation makes it
-easier to avoid introducing bugs.
+### Default Guidance
 
 One consideration to help guide your choice might be the 'amount' of state needed to implement a
 feature. If you feel there is a 'lot' of inter-related or inter-dependent state that you feel
 should be encapsulated together, then perhaps a Class is warranted rather than long argument lists
 to pure functions.
-
-### Default Guidance
-
-Our default guidance (at the moment) is to strive for pure functions. The motivation here is just
-KISS - Keep It Simple, Stupid.
-
-### When using a functional approach
-
-When called with the same arguments, pure functions will always return the same values, and they
-do not manipulate state outside of themselves.
-
-Additionally, pure functions are *really* easy to unit test: there is no need to mock out
-dependencies, or to add complex initialisation code before running the actual test. All you have
-to do is provide the function with some input, and assert that it returns the expected output.
-
-##### What does that look like?
-
-There's a thin layer in your code that deals with input and output, and passes control over to a pure
-function as soon as possible. For example:
-
-```javascript
-function onSubmit(event) {
-  // Input side-effects
-  event.preventDefault();
-  const formData = { /* form data extracted from the DOM */ };
-
-  // Hand over control to the pure function
-  const request = getRequestFromFormData(formData);
-
-  // Output side-effects
-  fetch(request);
-}
-
-function getRequestFromFormData(formData) {
-  // Validate/filter form data, call other pure functions, etc.
-  // Then generate a new Request object and return it.
-}
-```
 
 ### When using object orientation
 
