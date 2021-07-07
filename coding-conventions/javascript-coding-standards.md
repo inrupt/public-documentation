@@ -147,45 +147,46 @@ Some other guiding questions are:
 
 ### Guidance for object orientation
 
-- Organize your code as classes.
-  - Specifically, use ES6 classes.
-  - Since your class represents an instantiatable thing, name it with a noun. E.g., Command and
-    CommandExecutor, *not* executeCommand.
+- Organize code as **classes**.
+  - Since your class represents an instantiatable thing, name it with a noun.
+    E.g., `Command` and `CommandExecutor`, *not* `executeCommand`.
   - Typically there is one main class per file, which is the default export.
   - Give your file the name of the class, plus the applicable file extension.
-- A class has a single responsibility.
+- A class has a **single responsibility**.
   - Usually, it should be possible to describe in one sentence what a class does.
-- A class encapsulates state.
+- A class **encapsulates state**.
   - The class is responsible for keeping (only) its own state consistent.
-  - Consumers should not know and not depend on how an object is implemented; much less how its dependencies are implemented.
-  - If a method is consistently invoked with the same parameter, the consumer might have too much knowledge about the class's
-    state. Consider making it a constructor parameter instead.
-- Classes have limited knowledge about how other classes work.
+  - If a method is consistently invoked with the same parameter,
+    the consumer might have too much knowledge about the class's state.
+    Consider making it a constructor parameter instead.
+- Classes have **limited knowledge** about how other classes work.
+  - Consumers should not know and not depend on how an object is implemented;
+    much less on how its dependencies are implemented.
   - Follow the [Law of Demeter](http://misko.hevery.com/2008/07/18/breaking-the-law-of-demeter-is-like-looking-for-a-needle-in-the-haystack/),
-    and expect specific dependencies to be passed in rather than traversing object trees to find them.
-- Every class has a corresponding test file with unit tests.
-  - Write classes in a unit-testable way (which depends on architecture).
-- Write any exported executables as minimal wrappers around a class.
+    and expect specific dependencies to be passed in
+    rather than traversing object trees to find them.
+- Write classes in a **unit-testable** way (which depends on architecture).
+  - Every class has a corresponding test file with unit tests.
+- There exist **three kinds of objects**: objects that *are* things,
+  objects that *do* things, and objects that *make* things.
+  - The first group are data structures that represent a logical unit of information.
+    They typically have few dependencies (mostly other data structures).
+  - The second group are classes that process data and/or interact with the environment.
+    They can depend on other objects for behavior,
+    but they should usually not instantiate those.
+  - The third group are factories, whose sole job is to instantiate other objects.
+    A regular object should not know how to instantiate its dependencies;
+    rather, it takes its dependencies as constructor arguments.
+- **Prefer composition over inheritance** for reuse of functionality.
+  - Inheritance is useful for polymorphism and substitutability;
+    so do inherit for interface reasons.
+  - However, rather than relying too much on inherited functionality,
+    extract that functionality into reusable classes.
+    This simplifies testing and changing behavior,
+    and avoids the need to retest inherited behavior.
+- Write any **exported executable scripts** as minimal wrappers around a class.
   - Any command-line script instantiates a class with the right arguments.
   - That class can be independently unit-tested (the script much less so).
-
-#### Design for substitutability
-
-- There exist three kinds of objects: objects that *are* things,
-  objects that *do* things, and objects that *make* things.
-  - The first group are data structures that represent a logical unit of information. They typically
-    have few dependencies (mostly other data structures).
-  - The second group are classes that process data and/or interact with the environment. They can
-    depend on other objects for behavior, but they should usually not instantiate those.
-  - The third group are factories, whose sole job is to instantiate other objects.
-  - A regular object should not know how to instantiate its dependencies; rather, it takes its
-    dependencies as constructor arguments. This allows for unit testing and changing behavior. Only
-    factories know how to construct object trees.
-- Prefer composition over inheritance for reuse of functionality.
-  - Inheritance is useful for polymorphism and substitutability; so do inherit for interface reasons.
-  - However, rather than relying too much on inherited functionality, extract that functionality into
-    reusable classes.
-  - This simplifies testing and changing behavior, and avoids the need to retest inherited behavior.
 
 ### API design
 
