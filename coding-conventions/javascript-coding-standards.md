@@ -89,30 +89,63 @@
   2. Ensure that all generated versions export a mapping file.
 15. When including logging, use [loglevel](https://www.npmjs.com/package/loglevel).
 
-## Code structure (functional or object-oriented)
+## Library and API design
+JavaScript is a multi-paradigm language that supports
+functional and object-oriented programming.
+Within those paradigms, several degrees of freedom exist;
+for instance,
+functions can be pure or non-pure,
+and objects can be mutable or immutable.
 
-Generally, projects use either a functional or an object-oriented approach, or some combination of
-the two paradigms. When deciding on which approach to take, consider your use-case and your target
-audience. Some prominent JavaScript projects (e.g. React, Vue, Express) are largely function-oriented,
-whereas others (e.g. Angular, Sequelize) lean more strongly on OOP principles.
+**Within one library, one paradigm will generally be dominant.**
+For example, a library will export either a set of classes
+(with perhaps a smaller number of functions to complement those classes)
+or a set of functions
+(with perhaps a number of objects used or created by those functions).
 
-- The React project has provided a detailed explanation for their current preference for the
-  functional style (after initially being object-oriented):
-  [here](https://reactjs.org/docs/hooks-intro.html#classes-confuse-both-people-and-machines)
-- The VueJS project has also detailed general problems with their Class API:
-  [here](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)
-  (beware: this is just a tiny part of a much broader discussion within the Vue community!).
+**The choice of paradigm should be influenced by the use case at hand.**
+An example are the various DOM APIs,
+where HTTP functionality is exposed as a function (`fetch`),
+whereas element manipulations are exposed as objects (`Element`).
 
-### Default Guidance
+**Making these choices is not an exact science**,
+but below are some principles to guide the decision process.
+However, note that there are many considerations to codebase design beyond paradigms.
+The differences between two functional approaches can be bigger
+than the differences between a certain functional and object-oriented approach.
+Therefore, this choice needs to be considered as one parameter to the overall design
+rather than a single decisive factor.
+Decisions can be facilitated by comparing different concrete API designs
+rather than judging a single option in isolation.
 
-One consideration to help guide your choice might be the 'amount' of state needed to implement a
-feature. If you feel there is a 'lot' of inter-related or inter-dependent state that you feel
-should be encapsulated together, then perhaps a Class is warranted rather than long argument lists
-to pure functions.
+Keep in mind that **design choices are a means to an end**,
+and that end is ultimately to serve the users of our libraries
+in the best way possible.
+The important question is therefore
+whether it makes the lives of developers better.
+Some other guiding questions are:
+- How **intuitive** is the design to use?
+  - When new Solid or Linked Data concepts are introduced,
+    objects could help make them tangible and thereby facilitate understanding.
+- Which API design results in **simple client code**?
+  - Write some common snippets of code for multiple designs and compare.
+- How is exposed **functionality grouped** together?
+    - By namespaces or naming conventions?
+    - For object orientation, how is it distributed across objects?
+- What **kinds of state** does the use case involve?
+    - What state needs to be passed around?
+    - How is the state encapsulated?
+- What is the **life cycle** of data?
+- To what extent do we need **different implementations** through the same abstractions?
+  - Substitutability could be a signal for object orientation (`Element` and subclasses),
+    whereas a lack thereof could be captured functionality (`fetch`).
+- How many **entry points** do library users need to remember?
+- How well does the design allow **IDE support** such as autocompletion?
+- Are there **practical considerations for (im-)mutability**?
+    - Is immutability needed for certain algorithms (such as diffing)?
+    - Is mutability preferred for (measured!) performance issues?
 
-### When using object orientation
-
-With this paradigm, we make the following decisions:
+### Guidance for object orientation
 
 - Organize your code as classes.
   - Specifically, use ES6 classes.
@@ -154,17 +187,13 @@ With this paradigm, we make the following decisions:
     reusable classes.
   - This simplifies testing and changing behavior, and avoids the need to retest inherited behavior.
 
-## API design
+### API design
 
-### Use an `options` parameter for optional parameters
+#### Use an `options` parameter for optional parameters
 
 When a function has optional parameters, make it optionally accept an object containing those parameters.
 
-#### Why?
-
 This allows you to avoid having to change the API later when you add more options, it makes it clear to callers what 'boolean' options do, and ensures that callers do not have to pass `undefined` for options that they do not want to override.
-
-#### What does that look like?
 
 Instead of e.g.
 
@@ -202,16 +231,12 @@ function getElement(contents: string, options?: Partial<{ target: string; title:
 const element = getElement('Try this instead', { title: 'This is visible on hover' });
 ```
 
-### Enable compile-time errors if possible
+#### Enable compile-time errors if possible
 
 Try to make sure that invalid invocations are not allowed by your type signatures.
 
-#### Why?
-
 Because developers using TypeScript will get a warning if they call your code incorrectly at build
 time, rather than at runtime.
-
-##### What does that look like?
 
 Instead of:
 
