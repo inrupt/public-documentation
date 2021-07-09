@@ -74,6 +74,7 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
   (e.g., `rdfs:label`) don't end in full stops, but intentionally longer descriptive strings (e.g.,
   `rdfs:comment`, `dcterms:description`, `shacl:message`, etc.) do end with full stops (since they
   can often be multiple sentences).
+  
   ```turtle
       pet:shininess a rdfs:property ;
         rdfs:label "Pet Rock shininess (no full stop)"@en ;
