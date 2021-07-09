@@ -66,10 +66,22 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 - Write your vocabulary as [Turtle](https://www.w3.org/TR/turtle/).
   - Justification:
-    - Turtle is widely accepted as being the most human-readable RDF
-      serialization.
+    - Turtle is widely accepted as being the most human-readable RDF serialization.
 
 ### Internationalization
+
+- Full stops. As a general rule, we recommend that intentionally short descriptive strings 
+  (e.g., `rdfs:label`) don't end in full stops, but intentionally longer descriptive strings (e.g.,
+  `rdfs:comment`, `dcterms:description`, `shacl:message`, etc.) do end with full stops (since they
+  can often be multiple sentences).
+  ```turtle
+      pet:shininess a rdfs:property ;
+        rdfs:label "Pet Rock shininess (no full stop)"@en ;
+        rdfs:comment """The shininess of a Pet Rock. Could be a long description of why 
+                     shininess is so important to Pet Rock aficionados. So end with a full 
+                     stop."""@en .
+  ```
+  
 
 - As a general rule, always provide explicit language tags for any textual information you 
   provide in your vocabulary that is intended for humans to read, and which makes sense to be 
@@ -87,8 +99,8 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
         pet:PetRock a rdf:class ;
           rdfs:label "Pet Rock"@en ;
           rdfs:label "Pierre de compagnie (Pet Rock)"@fr ;
-          rdfs:comment "Pet Rock is a collectible toy made in 1975 by advertising executive Gary Dahl"@en ;
-          rdfs:comment "Pet Rock est un jouet de collection fabriqué en 1975 par le directeur de la publicité Gary Dahl"@fr .
+          rdfs:comment "Pet Rock is a collectible toy made in 1975 by advertising executive Gary Dahl."@en ;
+          rdfs:comment "Pet Rock est un jouet de collection fabriqué en 1975 par le directeur de la publicité Gary Dahl."@fr .
         ```
 
 - Explicitly provided language tags on textual information can be used by libraries to 
@@ -272,8 +284,8 @@ for example:
     my-vocab: a owl:Ontology ;
       dcterms:title "My guidelines vocab"@en ;
       dcterms:title "Mon vocabulaire des recommandations"@fr ;
-      dcterms:description "A longer description of my guidelines vocab"@en ;
-      dcterms:description "Une description plus longue de mon vocabulaire des recommandations"@fr .
+      dcterms:description "A longer description of my guidelines vocab."@en ;
+      dcterms:description "Une description plus longue de mon vocabulaire des recommandations."@fr .
     ```
 
 - Also provide `rdfs:seeAlso` references to any relevant documentation or
