@@ -37,15 +37,14 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 ## Existing research / guidelines
 
+- FAIR principles: [Coming to Terms with FAIR Ontologies](https://dgarijo.com/papers/EKAW2020_Coming_to_Terms_with_FAIR_Ontologies.pdf)
 - Richard Cyganiak: [RulesOfThumb](https://www.w3.org/wiki/User:Rcygania2/RulesOfThumb)
 - Axel Polleres, Haller (2019): [Are We Better Off With Just One Ontology on the Web?](http://www.semantic-web-journal.net/system/files/swj2307.pdf)
-
 - Widoco: [Vocab Best Practices](http://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html)
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
   - Old now, talks mostly about configuring Apache to serve vocabs (with
    optional content negotiation), but Appendix B on namespace URI is still
    helpful.
-
 - Axel Polleres et el (2018): [A More Decentralized Vision for Linked Data](https://epub.wu.ac.at/6371/1/IPM_workingpaper_02_2018.pdf)
   - Although more focused on instance data, it does describe the lack of
   vocabulary re-use in the real-world. 
@@ -55,7 +54,6 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
    sections 5.5 and 6 seem interesting in that they allude to solutions for term
    discovery and reuse).
   - "Hogan in his thesis [33, Section 5]"
-
 - Vocabulary of Interlinked Datasets: [VoID](https://www.w3.org/TR/void/)
   - Mostly relevant for describing instance data, as opposed to vocabularies.
 - Live OWL Documentation Environment: [LODE](https://essepuntato.it/lode/)
