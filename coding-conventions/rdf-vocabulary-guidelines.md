@@ -104,15 +104,18 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
           rdfs:comment "Pet Rock est un jouet de collection fabriqué en 1975 par le directeur de la publicité Gary Dahl."@fr .
         ```
 
-- Explicitly provided language tags on textual information can be used by libraries to 
-  automatically provide internationalized UI elements, or error messages, or any human-readable
-  information. For example, the Inrupt Artifact Generator can generate source code from RDF vocabs 
-  that provides easy and direct access to these translations:
+- Explicitly provided language tags on textual information can be used by
+  libraries to automatically provide internationalized UI elements, or error
+  messages, or any human-readable information. For example, the Inrupt
+  Artifact Generator can generate source-code from RDF vocabs that provides
+  easy and direct access to these translations, such as this example that
+  displays the Spanish comment associated with the 'shininess' property
+  defined in Inrupt's example Pet Rock vocabulary:
   
     ```javascript
-    import { PET } from "@inrupt/example-pet-vocab";
+    import { PET_ROCK } from "@inrupt/generated-vocab-pet-rock";
     
-    console.log(PET.PetRock.asLanguage("fr").comment);
+    console.log(PET_ROCK.shininess.asLanguage("es").comment);
     ```
 
 ### Prefixes
@@ -134,16 +137,28 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 - Use a short prefix for your vocabulary, but don't get caught up in
 trying to make the prefix **_too_** short. For example:
     ```turtle
-    prefix my-vocab: <http://myCompany.com/ns/example/myVocab#>
+    prefix my_vocab: <http://myCompany.com/ns/example/myVocab#>
     
-    # Long prefixes are fine too if justified
+    # Long prefixes are fine too if justified...
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
+    
+    # ...but we recommend using underscores instead of hyphens.
+    prefix inrupt_ess_service_audit: <https://inrupt.com/vocab/ess/service/audit/>
     ```
 
 - If your prefix is made up of multiple words or acronyms (such as the
-`fibo-loan-loan-mod` example above), use hypens and not underscores. There is no
-particular reason for this preference (i.e., either would be fine), it's just to
-pick one to maintain consistency across all of our vocabs.
+`inrupt_ess_service_audit` example above), use underscores and not hyphens.
+There's no particularly strong reason for this preference (i.e., either would
+be fine), it's more important to just pick one to maintain consistency across
+all your vocabs.
+  
+  But by using underscores it generally means that programming-language
+  constructs (like classes, variables, or method names) generated
+  automatically from RDF vocabularies won't need to transform hyphens,
+  since hyphens are invalid characters in many programming languages, like
+  Java, C#, JavaScript, etc. So by using underscores in your vocabularies
+  instead, you can maintain more consistency between your RDF and your
+  source-code.
 
 - Try to avoid existing commonly used prefixes if possible. Use [prefix.cc](http://prefix.cc/)
 to check if your preferred prefix is already in common use; but just be aware
@@ -221,7 +236,8 @@ Annotations" W3C editor draft for
 [an historical note on the lessons learned on this subject](https://www.w3.org/2003/06/sw-vocab-status/note#history)):
 
     ```turtle
-    # Even though the terms defined by FOAF did change over time, the version number in the namespace never did! 
+    # Even though the terms defined by FOAF did change over time, the version
+    # number in the namespace never did! 
     prefix foaf: <http://xmlns.com/foaf/0.1/>
     ```
  
@@ -262,7 +278,7 @@ the `Ontology` property from the [OWL](http://www.w3.org/2002/07/owl#)
 vocabulary, for example:
 
     ```turtle
-    my-vocab: a owl:Ontology .
+    my_vocab: a owl:Ontology .
     ```
 
 - Optionally, also type your vocabulary as an Artifact Generator-aware
@@ -272,7 +288,7 @@ for example:
     ```turtle
     # NOTE: this Artifact Generator-aware vocabulary is subject to change, so we
     # don't provide the full namespace URI at the moment!
-    my-vocab a artifact-generator:Ontology .
+    my_vocab a artifact-generator:Ontology .
     ``` 
 
 ### Describe the vocabulary
@@ -282,7 +298,7 @@ for example:
   description. Use explicit language tags to denote the language, for example:
 
     ```turtle
-    my-vocab: a owl:Ontology ;
+    my_vocab: a owl:Ontology ;
       dcterms:title "My guidelines vocab"@en ;
       dcterms:title "Mon vocabulaire des recommandations"@fr ;
       dcterms:description "A longer description of my guidelines vocab."@en ;
@@ -293,7 +309,7 @@ for example:
 specifications that might relate to this vocabulary.
 
     ```turtle
-    my-vocab: a owl:Ontology ;
+    my_vocab: a owl:Ontology ;
       dcterms:title "My Solid-related vocab"@en ;
       rdfs:seeAlso <https://solid.github.io/specification/> .
     ```
@@ -334,7 +350,7 @@ information.
   - Currently, this is **_not_** intended to follow the [SemVer](https://semver.org/)
   convention common elsewhere (just to keep things as simple as possible, and
   also because we currently (optionally) can append this version string to the
-  filenames and classnames of generated programming-language source code
+  filenames and classnames of generated programming-language source-code
   artifacts that we use to ease working with vocbaularies generally).
   - Currently, we just use a simple `0.x` format until we think a vocabulary is
   ready to be considered somewhat 'finished', at which point we would promote
@@ -343,23 +359,23 @@ information.
   - A very interesting idea is to instead use the `owl:versionInfo` predicate to
   reference richer meta-data for each vocbaulary change, e.g:
     ```turtle
-    my-vocab:
+    my_vocab:
         a owl:Ontology ;
-        rdfs:isDefinedBy my-vocab: ;
+        rdfs:isDefinedBy my_vocab: ;
         owl:versionInfo [
                 dcterms:date "2017-06-06"^^xsd:date ;
-                rdfs:seeAlso <https://github.com/me/my-vocab/pull/1> ;
-                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob372836/myvocab.ttl> ;
+                rdfs:seeAlso <https://github.com/me/my_vocab/pull/1> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my_vocab/randomblob372836/myvocab.ttl> ;
             ] ;
         owl:versionInfo [
                 dcterms:date "2019-10-26"^^xsd:date ;
-                rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
-                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob232829/myvocab.ttl> ;
+                rdfs:seeAlso <https://github.com/me/my_vocab/pull/2> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my_vocab/randomblob232829/myvocab.ttl> ;
             ] ;
         owl:versionInfo [
                 dcterms:date "2020-01-02"^^xsd:date ;
-                rdfs:seeAlso <https://github.com/me/my-vocab/pull/2> ;
-                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my-vocab/randomblob989929/myvocab.ttl> ;
+                rdfs:seeAlso <https://github.com/me/my_vocab/pull/2> ;
+                rdfs:isDefinedBy <https://raw.githubusercontent.com/me/my_vocab/randomblob989929/myvocab.ttl> ;
             ] .  
     ```
   This example uses blank nodes, meaning we can't easily reference each
@@ -404,14 +420,14 @@ that would be the perfect value for this property. If you don't have a
 meaningful URI to provide here, a simple textual string is also fine.
 
     ```turtle
-    my-vocab dcterms:creator <https://inrupt.com/profile/card/#us> .
+    my_vocab dcterms:creator <https://inrupt.com/profile/card/#us> .
     ```  
 
 - Also, feel free to include contributors using the `dcterms:contributor` 
 predicate (using individuals WebID's if possible):
 
     ```turtle
-    my-vocab dcterms:contributor 
+    my_vocab dcterms:contributor 
       <https://inrupt.com/employee/12345/profile/card/#me> ,
       <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
       "friendly-volunteer@example.com" .
@@ -463,15 +479,15 @@ issued after the official issue date of the vocabulary itself.
 vocabulary term each time you update any meta-data for that term.
 
     ```turtle
-    my-vocab: a owl:Ontology ;
+    my_vocab: a owl:Ontology ;
       dcterms:issued "2010-01-01"^^xsd:date ; 
       dcterms:modified "2015-01-01"^^xsd:date . 
     
-    my-vocab:prop1 a rdf:Property ;
+    my_vocab:prop1 a rdf:Property ;
       rdfs:comment "My first property - issued in original vocabulary."@en ;
       dcterms:modified "2015-01-01"^^xsd:date . 
     
-    my-vocab:prop2 a rdf:Property ;
+    my_vocab:prop2 a rdf:Property ;
       rdfs:comment "My new property - issued after the original vocabulary."@en ;
       dcterms:issued "2020-10-02"^^xsd:date . 
     ``` 
