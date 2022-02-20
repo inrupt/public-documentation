@@ -140,7 +140,7 @@ trying to make the prefix **_too_** short. For example:
     # Long prefixes are fine too if justified...
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
     
-    # ...but we recommend using underscores instead of hyphens.
+    # ...but we recommend using underscores instead of hyphens (see below).
     prefix inrupt_ess_service_audit: <https://inrupt.com/vocab/ess/service/audit/>
     ```
 
@@ -174,7 +174,7 @@ think your vocabulary's chosen namespace URI will remain stable.
 
 #### Recommended prefixes for common RDF vocabularies
 
-- Use preferred namespace prefixes. 
+- Use preferred namespace prefixes.
     - Justification: 
       - Consistency; Readability.
 
@@ -184,14 +184,22 @@ prefixes, such as `dc:`, or `dct:`, or `dcterms:`, which can be confusing. Since
 the [Turtle serialization of the vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl)
 itself uses `dcterms:`, so do we!
 
-Below we list the preferred namespace prefixes that we use at Inrupt across all
-our RDF for vocabularies whose prefix might not be immediately obvious (if
-you're unsure of a prefix to use, try and look for existing usage of that
-vocabulary in our RDF, or just ask at info@inrupt.com):
+We recommend using the common prefixes listed by the
+[W3C's RDFa Core Initial Context](https://www.w3.org/2011/rdfa-context/rdfa-1.1).
+
+Below we list prefixes that we use at Inrupt across all our RDF for
+vocabularies, but whose prefix might not be immediately obvious or is not
+listed in the RDFa Core Initial Context above. (If you're unsure of a prefix
+to use, try and look for existing usage of that vocabulary in our RDF, or just
+ask at info@inrupt.com):
 
 ```turtle
+# Many RDF examples in the wild use `dc:` or `dct:` instead of `dcterms:` (and
+# indeed the RDFa Core Initial Context lists both `dc:` and `dcterms:`), but
+# we have chosen to consistently use `dcterms:`, as this is the prefix the
+# Dublin Core themselves use in there Turtle serialization.
 prefix dcterms:  <http://purl.org/dc/terms/>
-prefix schema:   <http://schema.org/>
+
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 prefix ws:       <http://www.w3.org/ns/pim/space#>
 prefix shacl:    <http://www.w3.org/ns/shacl#>
