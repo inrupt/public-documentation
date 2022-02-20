@@ -38,7 +38,8 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 ## Existing research / guidelines
 
 - W3C [Best Practices for Publishing Linked Data](https://www.w3.org/TR/ld-bp/)
-  from 2014. Offers pretty generic guidance.
+  from 2014. Offers pretty generic guidance (from a governmental data
+  perspective).
 - W3C [Data on the Web Best Practices](Data on the Web Best Practices) from 2017.
   Contains some nice references to [challenges](https://www.w3.org/TR/dwbp/#challenges)
   and [benefits](https://www.w3.org/TR/dwbp/#BP_Benefits) of following best 
