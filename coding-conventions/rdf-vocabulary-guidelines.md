@@ -37,6 +37,10 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 
 ## Existing research / guidelines
 
+- W3C [Data on the Web Best Practices](Data on the Web Best Practices) from 2017.
+  Contains some nice references to [challenges](https://www.w3.org/TR/dwbp/#challenges)
+  and [benefits](https://www.w3.org/TR/dwbp/#BP_Benefits) of following best 
+  practices, but is a very long document.
 - FAIR principles: [Coming to Terms with FAIR Ontologies](https://dgarijo.com/papers/EKAW2020_Coming_to_Terms_with_FAIR_Ontologies.pdf)
 - Richard Cyganiak: [RulesOfThumb](https://www.w3.org/wiki/User:Rcygania2/RulesOfThumb)
 - Axel Polleres, Haller (2019): [Are We Better Off With Just One Ontology on the Web?](http://www.semantic-web-journal.net/system/files/swj2307.pdf)
