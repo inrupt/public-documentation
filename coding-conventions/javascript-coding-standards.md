@@ -20,7 +20,7 @@
     
 ## Node.js Support
 
-- Test in all active node.js [LTS versions](https://nodejs.org/en/about/releases/) on Ubuntu.
+- Test run in all node.js [maintenance, active and current LTS](https://nodejs.org/en/about/releases/) versions on Ubuntu.
 - Use npm, not yarn.
 
 ## Organize code conceptually in packages
