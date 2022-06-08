@@ -91,6 +91,7 @@
   1. Generate minified and non-minified versions.
   2. Ensure that all generated versions export a mapping file.
 15. When including logging, use [loglevel](https://www.npmjs.com/package/loglevel).
+16. When including demo apps, use [express](https://expressjs.com/) and [ejs](https://ejs.co/) for their simplicity to help developers focus on the functionality covered.
 
 ## Code structure (functional or object-oriented)
 
