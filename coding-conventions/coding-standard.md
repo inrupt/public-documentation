@@ -82,6 +82,49 @@ Non-main branches can contain non-atomic commits for work in progress, but must 
 
 ## Common Principles (regardless of programming language)
 
+### Delimit variables in message strings with `[` and `]`
+
+In general (i.e., there's always justifiable exceptions, if rare) we always
+delimit all variable values in message strings with `[` an `]`, including
+messages defined in RDF vocabularies (i.e., it's a pretty universal
+guideline!).
+
+```javascript
+// JavaScript
+console.log(`Logged in successfully with WebID: [${webId}].`);
+```
+
+```java
+// Java
+throw new RuntimeException("Failed to open file: [" + filename + "], reason: [" + cause + "].");
+```
+
+```turtle
+# Turtle vocabulary.
+# (Inrupt's Vocab libraries (e.g., for [JavaScript](https://github.com/inrupt/solid-common-vocab-js))
+# can replace placeholder values delimited by '{{' and '}}').
+inrupt_ui_common:errFileUpload_exceededSizeLimit a rdfs:Literal ;
+    rdfs:isDefinedBy inrupt_ui_common: ;
+    rdfs:comment "Tip: To fix this problem, try and reduce the file size (e.g., crop an image, compress an audio file, etc.)."@en ;
+    skos:definition "File [{{0}}] has size [{{1}}] that exceeds the allowable limit of [{{2}}]"@en ;
+    skos:definition "La taille du fichier [{{1}}], de [{{0}}], dépasse la limite autorisée [{{2}}]"@fr .
+```
+
+#### Why?
+
+The main reason is to more easily spot pesky instances of leading and/or
+trailling whitespace (which can be very tricky to spot when debugging), but
+also to consistently denote the notion of 
+'[_**here be a value that is variable in some sense**_]'.
+
+#### Why specifically the characters `[` and `]`?
+
+No particular reason, except they seem to work well across all programming
+and human-spoken languages, and don't seem to be intrusive to the eye, even to
+non-technical end users (and therefore also applicable to highly styled user
+interfaces).
+
+
 ### Avoid mutation by default
 
 Try to avoid mutating objects, creating altered copies of data structures rather than manipulating them. This is not a hard-and-fast rule: mutable data is fine when the scope is small (roughly: "all references to the variable are visible in your editor without scrolling" - and yes, that's not a strict rule given different screen sizes), or when immutability would result in performance issues for your use-case.
