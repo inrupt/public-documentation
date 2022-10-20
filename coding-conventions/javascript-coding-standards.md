@@ -20,7 +20,9 @@
     
 ## Node.js Support
 
-- Test run in all node.js [maintenance, active and current LTS](https://nodejs.org/en/about/releases/) versions on Ubuntu.
+- Test run in all Node 14 and 16 on Ubuntu. The goal is to eventually support
+Node 18, and be compliant with all [maintenance, active and current LTS](https://nodejs.org/en/about/releases/)
+versions.
 - Use npm, not yarn.
 
 ## Organize code conceptually in packages
