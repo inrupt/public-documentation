@@ -331,10 +331,16 @@ specifications that might relate to this vocabulary.
 
 - Use the [VANN](http://purl.org/vocab/vann/) properties 
 `preferredNamespacePrefix` and `preferredNamespaceUri` to describe your
-recommended prefix and namespace URI respectively. Remember that the preferred
-prefix value is only a suggestion to users of your vocabulary to encourage
-consistent usage across all users - but they are always free to choose whatever
-prefix they like, including none at all! 
+recommended prefix and namespace URI respectively.
+- Remember that the preferred prefix value is only a suggestion to users of
+  your vocabulary to encourage consistent usage across all users - but they
+  are always free to choose whatever prefix they like, including none at all! 
+- The values of `preferredNamespaceUri` should always be strings (and not
+  IRIs), but explicitly typed as `xsd:URI`, so for example:
+    ```turtle
+    my_vocab: a owl:Ontology ;
+      vann:preferredNamespaceUri "https://ex.com/ns#"^^xsd:anyURI .
+    ```
 
 ### Explicitly state the vocabulary license
 
