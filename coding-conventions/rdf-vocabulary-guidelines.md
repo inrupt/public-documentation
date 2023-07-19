@@ -18,9 +18,10 @@ open-source, but it's certainly our intention to make this tool generally
 available when we consider it ready.
 
 So although multiple attempts have been made at producing RDF vocabulary
-guidelines (see links in the [Existing research / guidelines section](#existing-research--guidelines) below), a fundamental problem is
-that these guidelines are generally written in academic papers, or described in
-prose, and are therefore not machine-readable and automatically enforceable.
+guidelines (see links in the [Existing research / guidelines section](#existing-research--guidelines)
+below), a fundamental problem is that these guidelines are generally written in
+academic papers, or described in prose, and are therefore not machine-readable
+and automatically enforceable.
  
 One nice consequence of Inrupt having an Artifact Generator is that if a
 vocabulary is explicitly declared as being of a specific type (e.g., of type
@@ -142,9 +143,9 @@ explicitly as being an `Inrupt-(or Solid?)-guideline-following-vocabulary`.
 - Use a short prefix for your vocabulary, but don't get caught up in
 trying to make the prefix **_too_** short. For example:
     ```turtle
-    prefix my_vocab: <http://myCompany.com/ns/example/myVocab#>
+    prefix my_vocab: <http://myCompany.com/ns/example/myVocab/>
     
-    # Long prefixes are fine too if justified...
+    # Long prefixes are fine too, if justified...
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
     
     # ...but we recommend using underscores instead of hyphens (see below).
@@ -425,12 +426,11 @@ information.
   particularly if a term is intended for testing, or considered unstable.
 
     ```turtle
-    prefix :         <http://example.com/vocab/test-new-idea#>
+    prefix :         <http://example.com/vocab/test-new-idea/>
     prefix status:   <http://www.w3.org/2003/06/sw-vocab-status/ns#>
     
-    <:propertyForTesting> status:term_status "testing" .
-  
-    <:ExperimentalClass> status:term_status "unstable" .
+    :propertyForTesting status:term_status "testing" .  
+    :ExperimentalClass  status:term_status "unstable" .
     ```
   
 - Kurt Cagle provides an interesting example of versioning in this
