@@ -457,8 +457,8 @@ predicate (using individuals WebID's if possible):
 
     ```turtle
     my_vocab dcterms:contributor 
-      <https://inrupt.com/employee/12345/profile/card/#me> ,
-      <https://inrupt.com/employee/i-am-not-a-number/profile/card/#me> , 
+      <https://w3id.org/inrupt/namespace/webid/employee/12345> ,
+      <https://w3id.org/inrupt/namespace/webid/employee/i-am-not-a-number> , 
       "friendly-volunteer@example.com" .
     ```  
 
