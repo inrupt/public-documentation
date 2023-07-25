@@ -180,7 +180,11 @@ Solid?) guideline following vocabulary`).
     
     console.log(PET_ROCK.shininess.asLanguage("es").comment);
     ```
+ Here are links to some websites that define commonly used language tags.
 
+An RFC on how language tags work: https://www.rfc-editor.org/rfc/bcp/bcp47.txt 
+
+A more readable Wikipedia page:  https://en.wikipedia.org/wiki/IETF_language_tag 
 ### Prefixes
 
 - Use the lowercase SPARQL syntax for `prefix` and `base` (if you use `base` at
