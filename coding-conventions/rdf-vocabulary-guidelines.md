@@ -195,7 +195,7 @@ A more readable Wikipedia page:  https://en.wikipedia.org/wiki/IETF_language_tag
   - Justification:
     - We consider RDF 1.1 Turtle parsers to be widely deployed now, so choosing
     lowercase and the non-@-prefixed syntax shouldn't cause any problems.
-    - It allows easier cut-and-paste into SPARQL queries. 
+    - **_Only_** the newer `prefix` syntax is allowed in SPARQL queries. 
     - Readability (i.e., lowercase tends to 'scream' less!).
     - Consistency (i.e., just pick one, and stick with it - Inrupt has chosen
       lowercase).
