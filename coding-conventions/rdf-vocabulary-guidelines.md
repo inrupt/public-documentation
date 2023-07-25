@@ -269,7 +269,7 @@ ask at info@inrupt.com):
 # Many RDF examples in the wild use `dc:` or `dct:` instead of `dcterms:` (and
 # indeed the RDFa Core Initial Context lists both `dc:` and `dcterms:`), but
 # we have chosen to consistently use `dcterms:`, as this is the prefix the
-# Dublin Core themselves use in there Turtle serialization.
+# Dublin Core themselves use in their Turtle serialization.
 prefix dcterms:  <http://purl.org/dc/terms/>
 
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
