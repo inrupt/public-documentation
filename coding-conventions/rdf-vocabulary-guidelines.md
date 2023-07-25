@@ -209,7 +209,7 @@ A more readable Wikipedia page:  https://en.wikipedia.org/wiki/IETF_language_tag
     # Long prefixes are fine too, if justified...
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
     
-    # ...but we recommend using underscores instead of hyphens (see below).
+    # ...but we have chosen to use underscores instead of hyphens (see below).
     prefix inrupt_ess_service_audit: <https://inrupt.com/vocab/ess/service/audit/>
     ```
 
