@@ -220,7 +220,7 @@ A more readable Wikipedia page:  https://en.wikipedia.org/wiki/IETF_language_tag
   would be fine), it's just more important to pick one to maintain consistency
   across vocabs.
   
-  But by choosing underscores, it generally means that programming-language
+By choosing underscores, it generally means that programming-language
   constructs (like classes, variables, or method names) generated
   automatically from RDF vocabularies won't need to transform the hyphens,
   since hyphens are invalid characters in many programming languages (such as
