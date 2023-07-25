@@ -123,7 +123,7 @@ Solid?) guideline following vocabulary`).
 - Full stops.
   - As a general rule, we recommend that short-form descriptive strings (e.g., 
     `rdfs:label`) don't end in full stops.
-  - But longer descriptive strings (e.g., `rdfs:comment`, `dcterms:description`,
+  - But long-form descriptive strings (e.g., `rdfs:comment`, `dcterms:description`,
     `shacl:message`, etc.) do end with full stops (since they can often be
     made up of multiple sentences).
   
