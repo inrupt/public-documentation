@@ -398,9 +398,9 @@ specifications that might relate to your vocabulary.
 
     ```turtle
     my_vocab: a owl:Ontology ;
-      sh:declare my_vocab:_PrefixDeclaration .
+      sh:declare my_vocab:_PrefixDeclaration_my_common .
   
-    my_vocab:_PrefixDeclaration a sh:PrefixDeclaration ;
+    my_vocab:_PrefixDeclaration_my_common a sh:PrefixDeclaration ;
       sh:prefix "my_common" ;
       sh:namespace "https://w3id.org/inrupt/namespace/vocab/common/"^^xsd:anyURI .
     ```
@@ -636,8 +636,15 @@ vocabulary term each time you update any meta-data for that term.
 
 - W3C (from 2008): [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/)
   - Definitely support Content negotiation if at all possible, and support as
-  many RDF seralizations as possible (i.e., just use any common RDF library to
-  perform the appropriate serializations dynamically at runtime).
+    many RDF seralizations as possible (i.e., just use any common RDF library to
+    perform the appropriate serializations dynamically at runtime).
+
+## Validating your vocabulary
+
+- Inrupt provides a set of SHACL shapes to perform vocab validation here:
+  https://github.com/inrupt/vocab-validation.
+  - We expect to extend and evolve these validators as part of a more complete
+    automated vocab publishing pipeline. 
 
 ## General style guidelines
 
