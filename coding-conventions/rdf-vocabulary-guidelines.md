@@ -123,7 +123,7 @@ Solid?) guideline following vocabulary`).
 - Full stops.
   - As a general rule, we recommend that short-form descriptive strings (e.g., 
     `rdfs:label`) don't end in full stops.
-  - But longer descriptive strings (e.g., `rdfs:comment`, `dcterms:description`,
+  - But long-form descriptive strings (e.g., `rdfs:comment`, `dcterms:description`,
     `shacl:message`, etc.) do end with full stops (since they can often be
     made up of multiple sentences).
   
@@ -180,7 +180,11 @@ Solid?) guideline following vocabulary`).
     
     console.log(PET_ROCK.shininess.asLanguage("es").comment);
     ```
+ Here are links to some websites that define commonly used language tags.
 
+An RFC on how language tags work: https://www.rfc-editor.org/rfc/bcp/bcp47.txt 
+
+A more readable Wikipedia page:  https://en.wikipedia.org/wiki/IETF_language_tag 
 ### Prefixes
 
 - Use the lowercase SPARQL syntax for `prefix` and `base` (if you use `base` at
@@ -191,7 +195,7 @@ Solid?) guideline following vocabulary`).
   - Justification:
     - We consider RDF 1.1 Turtle parsers to be widely deployed now, so choosing
     lowercase and the non-@-prefixed syntax shouldn't cause any problems.
-    - It allows easier cut-and-paste into SPARQL queries. 
+    - **_Only_** the newer `prefix` syntax is allowed in SPARQL queries. 
     - Readability (i.e., lowercase tends to 'scream' less!).
     - Consistency (i.e., just pick one, and stick with it - Inrupt has chosen
       lowercase).
@@ -205,7 +209,7 @@ Solid?) guideline following vocabulary`).
     # Long prefixes are fine too, if justified...
     prefix fibo-loan-loan-mod: <https://spec.edmcouncil.org/fibo/ontology/LOAN/Loans/MetadataLOANLoans/>
     
-    # ...but we recommend using underscores instead of hyphens (see below).
+    # ...but we have chosen to use underscores instead of hyphens (see below).
     prefix inrupt_ess_service_audit: <https://inrupt.com/vocab/ess/service/audit/>
     ```
 
@@ -216,7 +220,7 @@ Solid?) guideline following vocabulary`).
   would be fine), it's just more important to pick one to maintain consistency
   across vocabs.
   
-  But by choosing underscores, it generally means that programming-language
+By choosing underscores, it generally means that programming-language
   constructs (like classes, variables, or method names) generated
   automatically from RDF vocabularies won't need to transform the hyphens,
   since hyphens are invalid characters in many programming languages (such as
@@ -269,7 +273,7 @@ ask at info@inrupt.com):
 # Many RDF examples in the wild use `dc:` or `dct:` instead of `dcterms:` (and
 # indeed the RDFa Core Initial Context lists both `dc:` and `dcterms:`), but
 # we have chosen to consistently use `dcterms:`, as this is the prefix the
-# Dublin Core themselves use in there Turtle serialization.
+# Dublin Core themselves use in their Turtle serialization.
 prefix dcterms:  <http://purl.org/dc/terms/>
 
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
